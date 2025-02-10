@@ -3,8 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-
-    protected float movementSpeed = 6.0f;
+    public PlayerStats pS;
 
     protected Vector3 movementVector;
 
@@ -20,8 +19,15 @@ public class PlayerController : MonoBehaviour
 
     protected void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.LeftShift)) pS.MoveSpeed *= 2;
+        if (Input.GetKeyUp(KeyCode.LeftShift)) pS.MoveSpeed /= 2;
+
+
+
+
         movementVector = transform.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * transform.forward;
-        rigidbody.MovePosition(myTransform.position + movementVector * movementSpeed * Time.fixedDeltaTime);
+        rigidbody.MovePosition(myTransform.position + movementVector * pS.MoveSpeed * Time.fixedDeltaTime);
 
     }
 
