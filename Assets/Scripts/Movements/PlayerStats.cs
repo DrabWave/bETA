@@ -4,6 +4,7 @@ public class PlayerStats : MonoBehaviour
 {
     public float Health;
     public float MoveSpeed;
+    public string StatusOfVision = "Видимость в порядке";
 
 
 
@@ -11,5 +12,6 @@ public class PlayerStats : MonoBehaviour
     {
         Debug.Log(Health);
         Debug.Log(MoveSpeed);
+        Debug.Log(StatusOfVision);
     }
 }
