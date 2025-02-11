@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
     protected void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) pS.MoveSpeed *= 2;
-        if (Input.GetKeyUp(KeyCode.LeftShift)) pS.MoveSpeed /= 2;
+        if (Input.GetKeyDown(KeyCode.LeftShift)) pS.MoveSpeed *= 1.5f;
+        if (Input.GetKeyUp(KeyCode.LeftShift)) pS.MoveSpeed /= 1.5f;
 
 
 
