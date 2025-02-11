@@ -15,7 +15,7 @@ public class creepingfog : MonoBehaviour
     private float _FirstMS;
     private string _FirsStatusOfVision;
 
-
+    public float Step;
 
     void Start()
     {
@@ -30,6 +30,8 @@ public class creepingfog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        e.GoingToPlayer(_positionCreepingfog, Step);
+
         if (_deceleration) Deceleration();
         
     }

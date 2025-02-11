@@ -13,5 +13,14 @@ public class PlayerStats : MonoBehaviour
         Debug.Log(Health);
         Debug.Log(MoveSpeed);
         Debug.Log(StatusOfVision);
+
+
+        if (Health <= 0) Dead();
+    }
+
+
+    private void Dead()
+    {
+        Debug.Log("Character was dead!");
     }
 }

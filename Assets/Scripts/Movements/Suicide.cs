@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Suicide : MonoBehaviour
 {
-    public float GameTime = 2400f;
+    public float GameTime;
     private PlayerStats ps; 
     void Start()
     {
