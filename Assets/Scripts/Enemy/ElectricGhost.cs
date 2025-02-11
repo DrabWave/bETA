@@ -11,12 +11,17 @@ public class ElectricGhost : MonoBehaviour
 
     private Transform _positionElectricGhost;
     private bool _isStan;
+    private float _First_TimeOfStan;
+    private float _First_MoveSpeed;
 
 
     private void Start()
     {
         _positionElectricGhost = transform;
         _isStan = false;
+
+        _First_MoveSpeed = pS.MoveSpeed;
+        _First_TimeOfStan = TimeOfStan;
     }
 
     private void Update()
@@ -49,9 +54,9 @@ public class ElectricGhost : MonoBehaviour
         TimeOfStan -= Time.deltaTime;
         if (TimeOfStan < 0)
         {
-            pS.MoveSpeed += 6;
+            pS.MoveSpeed += _First_MoveSpeed;
             _isStan = false;
-            TimeOfStan += 5;
+            TimeOfStan += _First_TimeOfStan;
         }
     }
 
