@@ -17224,7 +17224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e22f1ad57428448bc8abc5876f8652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 1519558334}
   RandomPoint:
   - {fileID: 1124304418}
   - {fileID: 47318373}
@@ -17417,7 +17417,6 @@ GameObject:
   - component: {fileID: 1220796365}
   - component: {fileID: 1220796364}
   - component: {fileID: 1220796363}
-  - component: {fileID: 1220796362}
   - component: {fileID: 1220796361}
   m_Layer: 0
   m_Name: CreepingFog
@@ -17456,31 +17455,7 @@ MonoBehaviour:
   e: {fileID: 1207008631}
   ps: {fileID: 1519558340}
   DecelerationTime: 10
-  Step: 0
---- !u!114 &1220796362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1220796359}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e22f1ad57428448bc8abc5876f8652, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  RandomPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Step: 0.02
 --- !u!65 &1220796363
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18833,9 +18808,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   E: {fileID: 1207008631}
   pS: {fileID: 1519558340}
-  Canera: {fileID: 0}
+  Canera: {fileID: 330585548}
   TimeOfStan: 5
-  Step: 0
+  Step: 0.02
 --- !u!135 &1357210956
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21468,7 +21443,7 @@ Transform:
   m_GameObject: {fileID: 1519558333}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.43589497, z: -0, w: 0.8999976}
-  m_LocalPosition: {x: -11.13, y: 2.26, z: -29.79}
+  m_LocalPosition: {x: -11.46, y: 2.26, z: -30.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21489,7 +21464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pS: {fileID: 1519558340}
-  RunningTime: 0
+  RunningTime: 5
 --- !u!54 &1519558336
 Rigidbody:
   m_ObjectHideFlags: 0
