@@ -32,7 +32,7 @@ public class ElectricGhost : MonoBehaviour
 
     private void Update()
     {
-        E.GoingToPlayer(_positionElectricGhost, Step);
+       // E.GoingToPlayer(_positionElectricGhost, Step);
 
         if ( _isStan == true)
         {

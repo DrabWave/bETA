@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Camera : MonoBehaviour
@@ -11,9 +12,7 @@ public class Camera : MonoBehaviour
 
     private float yRotation;
     private float xRotation;
-
-
-
+    internal static Camera main;
 
     void Start()
     {
@@ -39,5 +38,10 @@ public class Camera : MonoBehaviour
     {
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(xRotation, yRotation, 0), Time.deltaTime * smooth);
         character.rotation = Quaternion.Lerp(character.rotation, Quaternion.Euler(0, yRotation, 0), Time.deltaTime * smooth);
+    }
+
+    internal Ray ScreenPointToRay(Vector3 mousePosition)
+    {
+        throw new NotImplementedException();
     }
 }

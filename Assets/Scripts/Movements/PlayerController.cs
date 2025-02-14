@@ -47,8 +47,8 @@ public class PlayerController : MonoBehaviour
         rigidbody.MovePosition(myTransform.position + movementVector * pS.MoveSpeed * Time.fixedDeltaTime);
 
 
-        Debug.Log(RunningTime);
-        Debug.Log(pS.MoveSpeed);
+        //Debug.Log(RunningTime);
+        //Debug.Log(pS.MoveSpeed);
 
     }
 

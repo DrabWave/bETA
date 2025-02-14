@@ -30,7 +30,7 @@ public class creepingfog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        e.GoingToPlayer(_positionCreepingfog, Step);
+       // e.GoingToPlayer(_positionCreepingfog, Step);
 
         if (_deceleration) Deceleration();
         

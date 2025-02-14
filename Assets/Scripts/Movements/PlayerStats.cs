@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -5,14 +6,14 @@ public class PlayerStats : MonoBehaviour
     public float Health;
     public float MoveSpeed;
     public string StatusOfVision = "Видимость в порядке";
-
+    public List<bool> keys = new List<bool>();
 
 
     private void Update()
     {
-        Debug.Log(Health);
-        Debug.Log(MoveSpeed);
-        Debug.Log(StatusOfVision);
+      //  Debug.Log(Health);
+      //  Debug.Log(MoveSpeed);
+        //Debug.Log(StatusOfVision);
 
 
         if (Health <= 0) Dead();

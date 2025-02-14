@@ -7,6 +7,7 @@ public class Enemies : MonoBehaviour
 {
     public Transform Player;
     public Transform[] RandomPoint = new Transform[10];
+    private PlayerStats ps;
 
 
     void Start()
@@ -30,4 +31,10 @@ public class Enemies : MonoBehaviour
     {
         nowTransform.transform.position = RandomPoint[Random.Range(0, RandomPoint.Length)].position;
     }
+
+    public void Damage(float Damage)
+    {
+        ps.Health-= Damage;
+    }
+
 }
