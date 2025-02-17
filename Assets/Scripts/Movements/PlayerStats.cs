@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -6,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     public float MoveSpeed;
     public string StatusOfVision = "Видимость в порядке";
 
+    
 
 
     private void Update()
