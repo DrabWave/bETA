@@ -6,7 +6,6 @@ public class PlayerStats : MonoBehaviour
     public float Health;
     public float MoveSpeed;
     public string StatusOfVision = "Видимость в порядке";
-    public List<bool> keys = new List<bool>();
 
 
     private void Update()

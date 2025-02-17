@@ -5,26 +5,82 @@ using static UnityEngine.GraphicsBuffer;
 
 public class TagDefinition : MonoBehaviour
 {
-    public string Name;
+    public GameObject currentObject;
+    public string TagDetective;
+    public int MaxCountDoors;
+    public List<int> keys = new List<int>();
+    public Dictionary<int, bool> Door = new Dictionary<int, bool>();
 
     void Start()
     {
-        
+        for (int i = 0; i < MaxCountDoors; i++) { Door[i] = false; }
     }
 
-   
+
     void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E)) TagDetectiving();
+    }
+
+    private void TagDetectiving()
     {
         Ray ray = new Ray(transform.position, transform.forward);
 
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            Name = hit.collider.tag;
+            Debug.Log(hit.collider.tag);
+            TagDetective = hit.collider.tag;
+            currentObject = hit.transform.gameObject;
+
 
         }
+        switch (TagDetective)
+        {
+            case "Key1":
+                TakeKey(1);
+                break;
 
-        Debug.DrawRay(transform.position, transform.forward * 2f, Color.red);
+            case "Key2":
+                TakeKey(2); 
+                break;
+
+            case "Door1":
+                OpenDoor(1);
+                break;
+
+            case "Door2":
+                OpenDoor(2);
+                break;
+
+
+        }
     }
+    private void OpenDoor(int indexDoor)
+    {
+        if (Door.ContainsKey(indexDoor))
+        {
+            if (Door[indexDoor])
+            {
+                Debug.Log("PORNO");
+            }
+            else if (keys.Contains(indexDoor))
+            {
+                Door[indexDoor] = true;
+                Destroy(currentObject);
+            }
+        }
+    }
+
+    private void TakeKey(int indexKey)
+    {
+        if (!keys.Contains(indexKey))
+        {
+            keys.Add(indexKey);
+            Destroy(currentObject);
+        }
+    }
+   
+
 
 }

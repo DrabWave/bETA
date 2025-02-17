@@ -9,15 +9,22 @@ public class PlayerController : MonoBehaviour
 
     protected new Rigidbody rigidbody;
     protected Transform myTransform;
+    public float RunningTime = 10f;
 
-    public float RunningTime;
-    private float _TimeOfRunning;
+    private float MaxMoveSpeed;
+    private float MinMoveSpeed;
+
+    private float MaxRunningTime;
+    private float MinRunningTime;
 
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
         myTransform = transform;
-        _TimeOfRunning = RunningTime;
+        MaxMoveSpeed = pS.MoveSpeed * 1.5f;
+        MinMoveSpeed = pS.MoveSpeed;
+        MaxRunningTime = RunningTime;
+        MinRunningTime = 0;
     }
 
 
@@ -27,28 +34,33 @@ public class PlayerController : MonoBehaviour
         
 
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && RunningTime > 0)
         {
+
             pS.MoveSpeed *= 1.5f;
+            if (pS.MoveSpeed > MaxMoveSpeed) pS.MoveSpeed = MaxMoveSpeed;
+            RunningTime-= Time.deltaTime;
+            if (RunningTime < MinRunningTime) RunningTime = MinRunningTime;
             
         }
 
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (((!Input.GetKey(KeyCode.LeftShift)) || RunningTime == 0))
         {
             pS.MoveSpeed /= 1.5f;
-            
-            
+            if (pS.MoveSpeed < MinMoveSpeed) pS.MoveSpeed = MinMoveSpeed;
+            RunningTime += Time.deltaTime;
+            if (RunningTime > MaxRunningTime) RunningTime = MaxRunningTime;
         }
 
 
+
+        Debug.Log(pS.MoveSpeed);
 
         movementVector = transform.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * transform.forward;
         rigidbody.MovePosition(myTransform.position + movementVector * pS.MoveSpeed * Time.fixedDeltaTime);
 
 
-        //Debug.Log(RunningTime);
-        //Debug.Log(pS.MoveSpeed);
 
     }
 
