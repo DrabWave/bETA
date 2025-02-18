@@ -2,42 +2,47 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    [SerializeField]
-
-    public float sentivity = 1f;
-    public float smooth = 10f;
-
-    public Transform character;
-
-    private float yRotation;
-    private float xRotation;
-
-
+    public float sentivity = 2.0f;
+    public float maxYAngle = 80.0f;
+    public float amount;
+    public float speed;
+    
+    private float _rotationX = 0.0f;
+    private float _distation;
+    private Vector3 _startPos;
+    private Vector3 _rotation;
 
 
     void Start()
     {
-        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        _startPos = transform.position; 
     }
 
-    
+
     void Update()
     {
-        yRotation += Input.GetAxis("Mouse X") * sentivity * Time.deltaTime;
-        xRotation -= Input.GetAxis("Mouse Y") * sentivity * Time.deltaTime;
+        // Поворот камеры
+
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
 
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        RotateCharater();
-
-    }
+        transform.parent.Rotate(Vector3.up * mouseX * sentivity);
 
 
-    protected void RotateCharater()
-    {
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(xRotation, yRotation, 0), Time.deltaTime * smooth);
-        character.rotation = Quaternion.Lerp(character.rotation, Quaternion.Euler(0, yRotation, 0), Time.deltaTime * smooth);
+        _rotationX -= mouseY * sentivity;
+        //_rotationX = Mathf.Clamp(_rotationX, -maxYAngle, maxYAngle);
+        transform.localRotation = Quaternion.Euler(_rotationX, 0.0f, 0.0f);
+
+        // Тряска камеры
+
+        _distation += (transform.position - _startPos).magnitude;
+        _startPos = transform.position;
+        _rotation.z = Mathf.Sin(_distation * speed) * amount;
+        _rotation.x = Mathf.Clamp(_rotationX, -maxYAngle, maxYAngle);
+        transform.localEulerAngles = _rotation;
     }
 }

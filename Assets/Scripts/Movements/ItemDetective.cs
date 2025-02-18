@@ -4,6 +4,7 @@ using System.Linq;
 
 public class ItemDetective : MonoBehaviour
 {
+    public Animator anim;
     public PlayerStats pS;
 
     RaycastHit hit;
@@ -14,19 +15,22 @@ public class ItemDetective : MonoBehaviour
     public GameObject currentObject;
 
     public int MaxCountDoors;
-    public List<int> Keys = new List<int>();
-    public Dictionary<int, bool> Door = new Dictionary<int, bool>();
+    
     
 
     private void Start()
     {
-        for (int i = 0; i < MaxCountDoors; i++) { Door[i] = false; }
+        for (int i = 0; i < MaxCountDoors; i++) { pS.Door[i] = false; }
+        anim = GetComponent<Animator>();
+        
     }
 
     private void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.E)) TagDetectiving();
         Activities();
+
+        
 
     }
 
@@ -56,6 +60,7 @@ public class ItemDetective : MonoBehaviour
             case "Door":                
                 break;
             case "Door1":
+
                 OpenDoor(1);
                 break;
         }
@@ -64,24 +69,24 @@ public class ItemDetective : MonoBehaviour
 
     private void TakeKey(int indexKey)
     {
-        if (!Keys.Contains(indexKey))
+        if (!pS.Keys.Contains(indexKey))
         {
-            Keys.Add(indexKey);
+            pS.Keys.Add(indexKey);
             Destroy(currentObject);
         }
     }
 
     private void OpenDoor(int indexDoor)
     {
-        if(Door.ContainsKey(indexDoor))
+        if(pS.Door.ContainsKey(indexDoor))
         {
-            if (Door[indexDoor])
+            if (pS.Door[indexDoor])
             {
                 Debug.Log("Дверь открыта");
             }
-            else if (Keys.Contains(indexDoor))
+            else if (pS.Keys.Contains(indexDoor))
             {
-                Door[indexDoor] = true;
+                pS.Door[indexDoor] = true;
                 Destroy(currentObject);
             }
             
