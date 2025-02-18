@@ -20,6 +20,7 @@ public class TagDefinition : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E)) TagDetectiving();
+        interaction();
     }
 
     private void TagDetectiving()
@@ -34,27 +35,7 @@ public class TagDefinition : MonoBehaviour
             currentObject = hit.transform.gameObject;
 
 
-        }
-        switch (TagDetective)
-        {
-            case "Key1":
-                TakeKey(1);
-                break;
-
-            case "Key2":
-                TakeKey(2); 
-                break;
-
-            case "Door1":
-                OpenDoor(1);
-                break;
-
-            case "Door2":
-                OpenDoor(2);
-                break;
-
-
-        }
+        } 
     }
     private void OpenDoor(int indexDoor)
     {
@@ -82,5 +63,27 @@ public class TagDefinition : MonoBehaviour
     }
    
 
+    private void interaction()
+    {
+        switch (TagDetective)
+        {
+            case "Key1":
+                TakeKey(1);
+                break;
 
+            case "Key2":
+                TakeKey(2);
+                break;
+
+            case "Door1":
+                OpenDoor(1);
+                break;
+
+            case "Door2":
+                OpenDoor(2);
+                break;
+
+
+        }
+    }
 }

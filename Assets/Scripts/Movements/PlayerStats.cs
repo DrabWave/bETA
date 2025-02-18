@@ -10,8 +10,8 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-      //  Debug.Log(Health);
-      //  Debug.Log(MoveSpeed);
+        //Debug.Log(Health);
+        //Debug.Log(MoveSpeed);
         //Debug.Log(StatusOfVision);
 
 

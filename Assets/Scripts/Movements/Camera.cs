@@ -6,7 +6,7 @@ public class Camera : MonoBehaviour
     [SerializeField]
 
     public float sentivity = 1f;
-    public float smooth = 10f;
+    public float smooth = 0.1f;
 
     public Transform character;
 

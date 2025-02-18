@@ -9,13 +9,15 @@ public class PlayerController : MonoBehaviour
 
     protected new Rigidbody rigidbody;
     protected Transform myTransform;
-    public float RunningTime = 10f;
 
-    private float MaxMoveSpeed;
-    private float MinMoveSpeed;
 
-    private float MaxRunningTime;
-    private float MinRunningTime;
+    private float MaxMoveSpeed; // максимальная скорость передвижения
+    private float MinMoveSpeed; // минимальная скорость передвижения
+
+    private float maxStamina = 10f;    // максимальная стамина
+    public float currentStamina;        // текущая стамина
+    private float staminaRecoveryDelay = 1f; // задержка перед восстановлением стамины после использования
+    private float lastStaminaUseTime; // время последнего использования стамины
 
     private void Start()
     {
@@ -23,38 +25,14 @@ public class PlayerController : MonoBehaviour
         myTransform = transform;
         MaxMoveSpeed = pS.MoveSpeed * 1.5f;
         MinMoveSpeed = pS.MoveSpeed;
-        MaxRunningTime = RunningTime;
-        MinRunningTime = 0;
+        currentStamina = maxStamina;
     }
 
 
     protected void Update()
     {
-
+        Sprint();
         
-
-
-        if (Input.GetKey(KeyCode.LeftShift) && RunningTime > 0)
-        {
-
-            pS.MoveSpeed *= 1.5f;
-            if (pS.MoveSpeed > MaxMoveSpeed) pS.MoveSpeed = MaxMoveSpeed;
-            RunningTime-= Time.deltaTime;
-            if (RunningTime < MinRunningTime) RunningTime = MinRunningTime;
-            
-        }
-
-
-        if (((!Input.GetKey(KeyCode.LeftShift)) || RunningTime == 0))
-        {
-            pS.MoveSpeed /= 1.5f;
-            if (pS.MoveSpeed < MinMoveSpeed) pS.MoveSpeed = MinMoveSpeed;
-            RunningTime += Time.deltaTime;
-            if (RunningTime > MaxRunningTime) RunningTime = MaxRunningTime;
-        }
-
-
-
         Debug.Log(pS.MoveSpeed);
 
         movementVector = transform.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * transform.forward;
@@ -63,6 +41,43 @@ public class PlayerController : MonoBehaviour
 
 
     }
+
+
+    private void Sprint()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && currentStamina > 0)
+        {
+
+            pS.MoveSpeed = MaxMoveSpeed;
+            currentStamina -=  Time.deltaTime;
+            lastStaminaUseTime = Time.time; 
+
+
+        }
+        else
+        {
+            pS.MoveSpeed = MinMoveSpeed;
+            if (Time.time >= lastStaminaUseTime + staminaRecoveryDelay)
+            {
+                
+                currentStamina += Time.deltaTime;
+            }
+
+        }
+        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+
+
+
+
+
+
+
+
+    }
+
+
+
+
 
 
     
