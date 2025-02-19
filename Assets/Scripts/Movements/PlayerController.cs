@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         Sprint();
         
-        Debug.Log(pS.MoveSpeed);
+        //Debug.Log(pS.MoveSpeed);
 
         movementVector = transform.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * transform.forward;
         rigidbody.MovePosition(myTransform.position + movementVector * pS.MoveSpeed * Time.fixedDeltaTime);
