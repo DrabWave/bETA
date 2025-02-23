@@ -9,7 +9,6 @@ public class Enemies : MonoBehaviour
     public Transform[] RandomPoint = new Transform[10];
     private PlayerStats ps;
 
-
     void Start()
     {
         
@@ -21,10 +20,11 @@ public class Enemies : MonoBehaviour
         
     }
 
-    public void GoingToPlayer(Transform nowTransform, float step)
+    /*public void GoingToPlayer(Transform nowTransform, float step)
     {
         nowTransform.transform.position = Vector3.MoveTowards(nowTransform.position, Player.position, step);
     }
+    */
 
 
     public void TeleportEnemy(Transform nowTransform)
@@ -36,5 +36,8 @@ public class Enemies : MonoBehaviour
     {
         ps.Health-= Damage;
     }
+
+
+
 
 }

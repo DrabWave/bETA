@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.AI;
+[RequireComponent (typeof(NavMeshAgent)) ]
 
 public class PsychicParasite : MonoBehaviour
 {
     // 2. Психические паразиты: Механика: Искажают интерфейс игрока: компас вращается, сообщения на экране заменяются угрозами.
-    public Enemies e;
+    /*public Enemies e;
     public bool Distortion;
     public float TimeOfDistortion;
     public PlayerStats ps;
@@ -47,6 +49,42 @@ public class PsychicParasite : MonoBehaviour
 
         }
     }
+    */
+    public Transform target;
+    public float distance;
+    NavMeshAgent myAgent;
+
+    private void Start()
+    {
+        myAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Update()
+    {
+        distance = Vector3.Distance(transform.position, target.position);
+
+        if (distance > 10)
+        {
+            myAgent.enabled = false;
+        }
+
+        if (distance <= 10 && distance > 3)
+        {
+            myAgent.enabled = true;
+            myAgent.SetDestination(target.transform.position);
+        }
+        if (distance <= 3)
+        {
+            myAgent.enabled = false;
+            Debug.Log("МОНСТР АТАКУЕТ");
+        }
+
+
+
+
+
+    }
+
 
 
 

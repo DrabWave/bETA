@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
     protected void Update()
     {
         Sprint();
-        
+       
+
         //Debug.Log(pS.MoveSpeed);
 
         movementVector = transform.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * transform.forward;
