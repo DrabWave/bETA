@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
+    /*
     [SerializeField]
 
     public float sentivity = 1f;
@@ -44,4 +45,34 @@ public class Camera : MonoBehaviour
     {
         throw new NotImplementedException();
     }
+    */
+
+    public float sentivity;
+    public float maxYAngle = 80.0f;
+
+    private float rotationX = 0.0f;
+
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+
+    void Update()
+    {
+
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+
+        transform.parent.Rotate(Vector3.up * mouseX * sentivity);
+
+
+        rotationX -= mouseY * sentivity;
+        rotationX = Mathf.Clamp(rotationX, -maxYAngle, maxYAngle);
+        transform.localRotation = Quaternion.Euler(rotationX, 0.0f, 0.0f);
+    }
+
 }
