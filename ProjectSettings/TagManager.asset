@@ -10,6 +10,7 @@ TagManager:
   - Door1
   - Key2
   - Door2
+  - Enemy
   layers:
   - Default
   - TransparentFX
