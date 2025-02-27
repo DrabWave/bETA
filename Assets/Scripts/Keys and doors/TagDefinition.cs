@@ -5,16 +5,17 @@ using static UnityEngine.GraphicsBuffer;
 
 public class TagDefinition : MonoBehaviour
 {
+    public PlayerStats pS;
+
+
     public GameObject currentObject;
     public string TagDetective;
     public int MaxCountDoors;
-    public List<int> keys = new List<int>();
-    public Dictionary<int, bool> Door = new Dictionary<int, bool>();
+    
 
     void Start()
     {
-        MaxCountDoors = 10;
-        for (int i = 0; i < MaxCountDoors; i++) { Door[i] = false; }
+        for (int i = 0; i < MaxCountDoors; i++) { pS.Door[i] = false; }
     }
 
 
@@ -39,17 +40,17 @@ public class TagDefinition : MonoBehaviour
 
         } 
     }
-    private void OpenDoor(int indexDoor)
+    private void OpenDoor(int indexDoor, int LastCountDoor)
     {
-        if (Door.ContainsKey(indexDoor))
+        if (pS.Door.ContainsKey(indexDoor))
         {
-            if (Door[indexDoor])
+            if (pS.Door[indexDoor])
             {
                 Debug.Log("PORNO");
             }
-            else if (keys.Contains(indexDoor))
+            else if (pS.Keys.Contains(indexDoor) && pS.Keys[LastCountDoor] == indexDoor)
             {
-                Door[indexDoor] = true;
+                pS.Door[indexDoor] = true;
                 Destroy(currentObject);
             }
         }
@@ -57,9 +58,9 @@ public class TagDefinition : MonoBehaviour
 
     private void TakeKey(int indexKey)
     {
-        if (!keys.Contains(indexKey))
+        if (currentObject != null)
         {
-            keys.Add(indexKey);
+            pS.Keys.Add(indexKey);
             Destroy(currentObject);
         }
     }
@@ -67,6 +68,16 @@ public class TagDefinition : MonoBehaviour
 
     private void interaction()
     {
+        /*
+         * Door Keys
+         * 1    4 
+         * 2    9
+         * 3    14
+         * _____________
+         * i++  i+= 5
+         */
+
+
         switch (TagDetective)
         {
             case "Key1":
@@ -78,12 +89,13 @@ public class TagDefinition : MonoBehaviour
                 break;
 
             case "Door1":
-                OpenDoor(1);
+                OpenDoor(1, 4);
+                break;
+            
+            case "Door2":
+                OpenDoor(2, 9);
                 break;
 
-            case "Door2":
-                OpenDoor(2);
-                break;
 
 
         }

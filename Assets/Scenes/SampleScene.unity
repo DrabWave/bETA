@@ -53061,6 +53061,7 @@ MonoBehaviour:
   StatusOfVision: "\u041A\u0430\u043C\u0435\u0440\u0430 \u0432 \u043F\u043E\u0440\u044F\u0434\u043A\u0435"
   StatusOfInterface: "\u0418\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441 \u0432
     \u043F\u043E\u0440\u044F\u0434\u043A\u0435"
+  Keys: 
 --- !u!114 &1519558341
 MonoBehaviour:
   m_ObjectHideFlags: 0
