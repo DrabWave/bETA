@@ -13,24 +13,26 @@ public class TagDefinition : MonoBehaviour
 
     void Start()
     {
+        MaxCountDoors = 10;
         for (int i = 0; i < MaxCountDoors; i++) { Door[i] = false; }
     }
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) TagDetectiving();
-        interaction();
+        TagDetectiving();
+        if (Input.GetKeyDown(KeyCode.E)) interaction();
+
     }
 
-    private void TagDetectiving()
+    public void TagDetectiving()
     {
         Ray ray = new Ray(transform.position, transform.forward);
 
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log(hit.collider.tag);
+            //Debug.Log(hit.collider.tag);
             TagDetective = hit.collider.tag;
             currentObject = hit.transform.gameObject;
 
