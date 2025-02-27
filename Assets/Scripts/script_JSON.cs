@@ -3,6 +3,11 @@ using System.IO;
 
 public class script_JSON : MonoBehaviour
 {
+    
+    // ________!STOP!_____________ - dont do it
+    
+    
+    
     public Item item;
 
     [ContextMenu("Load")]
@@ -19,6 +24,9 @@ public class script_JSON : MonoBehaviour
 
 
     [System.Serializable]
+
+
+    // Will add vars for abstract inventory with List<>;
     public class Item
     {
         public string NameItem;

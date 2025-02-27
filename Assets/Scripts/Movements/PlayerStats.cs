@@ -15,11 +15,6 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Health);
-        Debug.Log(MoveSpeed);
-        Debug.Log(StatusOfVision);
-
-
         if (Health <= 0) Dead();
     }
 

@@ -4,7 +4,6 @@ using System.Linq;
 
 public class ItemDetective : MonoBehaviour
 {
-    public Animator anim;
     public PlayerStats pS;
 
     RaycastHit hit;
@@ -14,24 +13,22 @@ public class ItemDetective : MonoBehaviour
     public string TagDetective;
     public GameObject currentObject;
 
-    public int MaxCountDoors;
-    
-    
+    private int MaxCountDoors = 3;
+
+    public GameObject[] keys = new GameObject[] { };
 
     private void Start()
     {
-        for (int i = 0; i < MaxCountDoors; i++) { pS.Door[i] = false; }
-        anim = GetComponent<Animator>();
-        
+        for (int i = 0; i < MaxCountDoors; i++)
+        {
+            pS.Door[i] = false;
+        }
+
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.E)) TagDetectiving();
-        Activities();
-
-        
-
+        if (Input.GetKeyUp(KeyCode.E)) { TagDetectiving(); Activities(); }
     }
 
     private void TagDetectiving()
@@ -55,13 +52,15 @@ public class ItemDetective : MonoBehaviour
             case "Key1":
                 TakeKey(1);
                 break;
-            
-            
+
+
+
+
             case "Door":                
                 break;
             case "Door1":
+                OpenDoor(1, 4);
 
-                OpenDoor(1);
                 break;
         }
     }
@@ -69,35 +68,36 @@ public class ItemDetective : MonoBehaviour
 
     private void TakeKey(int indexKey)
     {
-        if (!pS.Keys.Contains(indexKey))
+        if (currentObject != null)
         {
             pS.Keys.Add(indexKey);
             Destroy(currentObject);
         }
     }
 
-    private void OpenDoor(int indexDoor)
+
+
+    private void OpenDoor(int indexDoor, int LastCountDoor)
     {
         if(pS.Door.ContainsKey(indexDoor))
         {
             if (pS.Door[indexDoor])
             {
-                Debug.Log("Дверь открыта");
+                Debug.Log("YES");
             }
-            else if (pS.Keys.Contains(indexDoor))
+            else if (pS.Keys.Contains(indexDoor) && pS.Keys[LastCountDoor] == indexDoor)
             {
                 pS.Door[indexDoor] = true;
                 Destroy(currentObject);
-            }
-            
-
+            }          
         }
-
-
     }
 
-    
-    
+
+
+
+
+
 }
         
     
