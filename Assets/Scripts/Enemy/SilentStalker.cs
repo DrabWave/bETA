@@ -4,28 +4,36 @@ using UnityEngine;
 
 public class SilentStalker : MonoBehaviour
 {
-    public TagDefinition tg;
+
     public Transform player;
-    public float distance = 5f;
-    void Start()
+    public TagDefinition tg;
+    public float followDistance = 5f; //расстояние преследование до игрока
+    public float speed = 5f; //скорость монстра
+    public Camera playerCamera;
+
+    private void Update()
     {
-        
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer > followDistance) FollowPlayer();
+        if (tg.TagDetective == "SilentStalker") TeleportBehindPlayer();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void TeleportBehindPlayer()
     {
-        if (tg.TagDetective == "SilentStalker")
-        {
-            Tleport();
-        }
+        Vector3 behindPlayerPosition = player.position - player.forward * followDistance;
+        behindPlayerPosition.y = player.position.y;
+        transform.position = behindPlayerPosition;
     }
-    private void Tleport()
+
+    private void FollowPlayer()
     {
-        Vector3 teleportPos = player.position - player.forward * distance;
-        teleportPos.y = player.position.y;
+        Vector3 targetPosition = player.position - player.forward * followDistance;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+
+    }
 
 
-        transform.position = teleportPos;
-    }
+
+
+
 }

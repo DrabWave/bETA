@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -43,9 +44,8 @@ public class Camera : MonoBehaviour
 
     }
 
-
-
-
-
-
+    internal Vector3 WorldToViewportPoint(Vector3 position)
+    {
+        throw new NotImplementedException();
+    }
 }

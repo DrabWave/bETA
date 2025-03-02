@@ -5,58 +5,17 @@ using UnityEngine.AI;
 public class PsychicParasite : MonoBehaviour
 {
     // 2. Психические паразиты: Механика: Искажают интерфейс игрока: компас вращается, сообщения на экране заменяются угрозами.
-    /*public Enemies e;
-    public bool Distortion;
-    public float TimeOfDistortion;
-    public PlayerStats ps;
-    public GameObject obj;
-    private float FirstTimeOfDistortion;
-    private string FirstStatusInterface;
-
-
-
-    void Start()
-    {
-        FirstTimeOfDistortion = TimeOfDistortion;
-        Distortion = false;
-        FirstStatusInterface = ps.StatusOfInterface;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Distortion) Distorition();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            Distortion = true;
-            ps.StatusOfInterface = "Нарушена работа интерфеса";
-        }
-    }
-
-    private void Distorition()
-    {
-        TimeOfDistortion -= Time.deltaTime;
-        if (TimeOfDistortion < 0)
-        {
-            Distortion = false;
-            TimeOfDistortion = FirstTimeOfDistortion;
-            ps.StatusOfInterface = FirstStatusInterface;
-            Destroy(obj);
-
-        }
-    }
-    */
     public Transform target;
     public float distance;
     NavMeshAgent myAgent;
+    public CameraShake camShake;
+    private bool isShaking = false;
+    private float StartshakeDuration; 
 
     private void Start()
     {
         myAgent = GetComponent<NavMeshAgent>();
+        StartshakeDuration = camShake.shakeTime;
     }
 
     private void Update()
@@ -66,17 +25,30 @@ public class PsychicParasite : MonoBehaviour
         if (distance > 10)
         {
             myAgent.enabled = false;
+            isShaking = false;
+            camShake.shakeTime = StartshakeDuration;
         }
 
         if (distance <= 10 && distance > 3)
         {
             myAgent.enabled = true;
             myAgent.SetDestination(target.transform.position);
+            isShaking = false;
+            camShake.shakeTime = StartshakeDuration;
         }
         if (distance <= 3)
         {
+            isShaking = true;
+            if (isShaking)
+            {
+                camShake.shakeTime = 999999f;
+                camShake.TriggerShake();
+            }
+            
             myAgent.enabled = false;
             Debug.Log("МОНСТР АТАКУЕТ");
+            
+
         }
 
 
