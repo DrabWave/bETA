@@ -6,10 +6,16 @@ public class FlashLight : MonoBehaviour
     private bool isOn = false;
 
 
+    private float TotalTime = 300f;
+    private float currentTime;
+
+
+
     private void Start()
     {
         flashLight = GetComponent<Light>();
         flashLight.enabled = false;
+        currentTime = TotalTime;
 
     }
 
@@ -17,4 +23,15 @@ public class FlashLight : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F)) { isOn = !isOn; flashLight.enabled = isOn; }
     }
+
+
+
+    private void Time()
+    {
+        while (currentTime > 0)
+        {
+
+        }
+    }
+
 }

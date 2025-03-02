@@ -7,10 +7,11 @@ public class TagDefinition : MonoBehaviour
 {
     public PlayerStats pS;
 
-
     public GameObject currentObject;
     public string TagDetective;
     public int MaxCountDoors;
+    public float distance;
+     
     
 
     void Start()
