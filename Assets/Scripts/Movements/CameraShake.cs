@@ -5,7 +5,7 @@ public class CameraShake : MonoBehaviour
 {
     public float shakeTime = 0.5f; //время тряски
     public float shakePower = 0.1f;//сила тряски
-
+    public PlayerStats ps;
     private Vector3 originalPosition;
     private Camera cameraComponent;
     void Start()
@@ -29,6 +29,7 @@ public class CameraShake : MonoBehaviour
         float elapsed = 0.0f;
         while (elapsed < shakeTime)
         {
+            ps.StatusOfVision = "Тряска камеры";
             float x = Random.Range(-1f, 1f) * shakePower;
             float y = Random.Range(-1f, 1f) * shakePower;
 
@@ -39,6 +40,7 @@ public class CameraShake : MonoBehaviour
 
         }
         transform.localPosition = originalPosition;
+        ps.StatusOfVision = "Видимость в порядке";
     }
 
 
