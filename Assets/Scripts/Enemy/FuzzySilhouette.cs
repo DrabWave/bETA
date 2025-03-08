@@ -4,9 +4,9 @@ public class FuzzySilhouette : MonoBehaviour
 {
     public TagDefinition tg;
     public Transform player;
-    public int rnd;
     public float teleportDistance = 5f;
-
+    public GameObject monster;
+    public int rnd;
 
 
     void Start()
@@ -16,29 +16,37 @@ public class FuzzySilhouette : MonoBehaviour
 
     void Update()
     {
+        if (IsPlayerLook())
+        {
+            Teleport();
+        }
+    }
+
+    private bool IsPlayerLook()
+    {
+
         if (tg.TagDetective == "FuzzySilhouette")
         {
-            TeleportToRightOrLeft();
+            return true;
         }
-        
+        return false;
+
     }
 
-
-    private void TeleportToRightOrLeft()
+    private void Teleport()
     {
-        //teleportDistance = Vector3.Distance(transform.position, player.position);
+        //Vector3 spawnPosition = player.position + (player.right /2) * teleportDistance;
+        //spawnPosition.y = player.position.y; 
+        //monster.transform.position = spawnPosition;
         rnd = Random.Range(0, 2);
-        if (rnd == 0)
-        {
-            Vector3 newPos = player.position + transform.right * teleportDistance;
-            transform.position = newPos;
-        }
-        else
-        {
-            Vector3 newPos = player.position - transform.right * teleportDistance;
-            transform.position = newPos;
-        }
+        if (rnd == 0) transform.position += player.right * Time.deltaTime * teleportDistance; // появление справа
+        if (rnd == 1) transform.position -= player.right * Time.deltaTime * teleportDistance; // появление слева
+
+
 
 
     }
+
+
+
 }
