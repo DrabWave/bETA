@@ -12,6 +12,7 @@ TagManager:
   - Door2
   - Enemy
   - FuzzySilhouette
+  - postprocessing
   layers:
   - Default
   - TransparentFX
