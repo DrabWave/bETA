@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 
 public class Camera : MonoBehaviour
 {
-    
+    // блять тряску при ходьбе сделать
 
     public float sentivity;
     public float maxYAngle = 80.0f;
@@ -40,6 +40,8 @@ public class Camera : MonoBehaviour
         rotationX -= mouseY * sentivity;
         rotationX = Mathf.Clamp(rotationX, -maxYAngle, maxYAngle);
         transform.localRotation = Quaternion.Euler(rotationX, 0.0f, 0.0f);
+        
+        
 
 
     }

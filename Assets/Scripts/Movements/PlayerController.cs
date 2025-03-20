@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    // Стелс систему сделать, *обсудить с Матвеем
+
+
     [SerializeField]
     public PlayerStats pS;
 
@@ -11,13 +15,22 @@ public class PlayerController : MonoBehaviour
     protected Transform myTransform;
 
 
-    private float MaxMoveSpeed; // максимальная скорость передвижения
-    private float MinMoveSpeed; // минимальная скорость передвижения
+    private float MaxMoveSpeed; 
+    private float MinMoveSpeed;
 
-    private float maxStamina = 10f;    // максимальная стамина
-    public float currentStamina;        // текущая стамина
-    private float staminaRecoveryDelay = 1f; // задержка перед восстановлением стамины после использования
-    private float lastStaminaUseTime; // время последнего использования стамины
+    private float CrowMoveSpeed;
+    private bool isCrowing;
+
+    public float maxStamina;    
+    public float currentStamina;        
+    public float staminaRecoveryDelay; 
+    private float lastStaminaUseTime;
+    private bool isRunning;
+
+
+    public GameObject cameraPosition;
+    public GameObject CrowlCameraPosition;
+    public GameObject StayCameraPosition;
 
     private void Start()
     {
@@ -25,22 +38,29 @@ public class PlayerController : MonoBehaviour
         myTransform = transform;
         MaxMoveSpeed = pS.MoveSpeed * 1.5f;
         MinMoveSpeed = pS.MoveSpeed;
-        currentStamina = maxStamina;
+        currentStamina = maxStamina;       
+        CrowMoveSpeed = pS.MoveSpeed / 2f;
+        
+        isRunning = false;
+        isCrowing = false;
+
+
+
+        StayCameraPosition.transform.position = cameraPosition.transform.position;
+        //_current_cameraPosition = new Vector3(cameraPosition.transform.position.x, cameraPosition.transform.position.y, cameraPosition.transform.position.z);
     }
 
 
     protected void Update()
     {
         Sprint();
+        Crawl();
        
 
         //Debug.Log(pS.MoveSpeed);
 
         movementVector = transform.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * transform.forward;
         rigidbody.MovePosition(myTransform.position + movementVector * pS.MoveSpeed * Time.fixedDeltaTime);
-
-
-
     }
 
 
@@ -51,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
             pS.MoveSpeed = MaxMoveSpeed;
             currentStamina -=  Time.deltaTime;
-            lastStaminaUseTime = Time.time; 
+            lastStaminaUseTime = Time.time;
 
 
         }
@@ -62,18 +82,23 @@ public class PlayerController : MonoBehaviour
             {
                 
                 currentStamina += Time.deltaTime;
+                
             }
-
         }
         currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+    }
 
-
-
-
-
-
-
-
+    private void Crawl()
+    {
+        if (Input.GetKey(KeyCode.C) && isRunning == false)
+        {
+            cameraPosition.transform.position = CrowlCameraPosition.transform.position;
+            pS.MoveSpeed = CrowMoveSpeed;
+        }
+        else
+        {
+            cameraPosition.transform.position = StayCameraPosition.transform.position;
+        }
     }
 
 

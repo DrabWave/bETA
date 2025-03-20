@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class FlashLight : MonoBehaviour
 {
+
+    // бл€ть рандом заху€чить, чтобы мерцани€ были, а также батарейки
+
     private Light flashLight;
     private bool isOn = false;
 

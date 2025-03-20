@@ -2,9 +2,12 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using static UnityEngine.GraphicsBuffer;
+using Unity.VisualScripting;
 
 public class TagDefinition : MonoBehaviour
 {
+    // Матвей блять перепиши свой ебучий метод на определения тега, потому что из-за твоего постоянного не работает моя хуйня на двери. Нужна проверка клавиши как из {TakeObject.cs}
+    // говорю тебе, чтобы скрипты врагов не поплыли случайно
     public PlayerStats pS;
 
     public GameObject currentObject;
@@ -75,12 +78,25 @@ public class TagDefinition : MonoBehaviour
          * 2    9
          * 3    14
          * _____________
-         * i++  i+= 5
+         * i++  i+= n follow [0, 1000]
          */
 
 
         switch (TagDetective)
         {
+            case "RespawnDevice":
+                
+                break;
+
+            case "AudioNote":
+                break;
+
+            case "Note":
+                break;
+
+            case "Battery":
+                break;
+
             case "Key1":
                 TakeKey(1);
                 break;

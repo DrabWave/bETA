@@ -3,6 +3,14 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+
+    // *new рассудок. ћеханика: идет уменьшени€ от нахождени€ в темноте. ƒолжен быть включен фонарик посто€нно, чтобы это значение оставалось в норме.
+    // 
+    public float MindLevel;
+
+    private Transform Player;
+    public Transform respawnPoint;
+
     public float Health;
     public float MoveSpeed;
     public string StatusOfVision = "¬идимость в пор€дке";
@@ -11,9 +19,14 @@ public class PlayerStats : MonoBehaviour
     public List<int> Keys = new List<int>();
     public Dictionary<int, bool> Door = new Dictionary<int, bool>();
 
+    private void Start()
+    {
+        Player = transform;
+    }
 
     private void Update()
     {
+        
         //Debug.Log(Health);
         //Debug.Log(MoveSpeed);
         //Debug.Log(StatusOfVision);
@@ -25,6 +38,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Dead()
     {
-        Debug.Log("Character was dead!");
+        // DeadScreen.UI.isEnable = true;
+        Player.transform.position = respawnPoint.transform.position; 
     }
 }

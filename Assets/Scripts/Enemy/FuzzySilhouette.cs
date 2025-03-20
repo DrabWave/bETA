@@ -36,7 +36,7 @@ public class FuzzySilhouette : MonoBehaviour
     private void Teleport()
     {
         //Vector3 spawnPosition = player.position + (player.right /2) * teleportDistance;
-        //spawnPosition.y = player.position.y; 
+        //spawnPosition.y = player.position.y;  
         //monster.transform.position = spawnPosition;
         rnd = Random.Range(0, 2);
         if (rnd == 0) transform.position += player.right * Time.deltaTime * teleportDistance; // появление справа
