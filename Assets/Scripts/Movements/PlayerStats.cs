@@ -39,6 +39,7 @@ public class PlayerStats : MonoBehaviour
     private void Dead()
     {
         // DeadScreen.UI.isEnable = true;
-        Player.transform.position = respawnPoint.transform.position; 
+        Player.transform.position = respawnPoint.transform.position;
+        Health = 3f;
     }
 }

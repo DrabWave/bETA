@@ -10,8 +10,8 @@ public class PsychicParasite : MonoBehaviour
     NavMeshAgent myAgent;
     public CameraShake camShake;
     private bool isShaking = false;
-    private float StartshakeDuration; 
-
+    private float StartshakeDuration;
+    public PlayerStats ps;
     private void Start()
     {
         myAgent = GetComponent<NavMeshAgent>();
@@ -44,7 +44,7 @@ public class PsychicParasite : MonoBehaviour
                 camShake.shakeTime = 999999f;
                 camShake.TriggerShake();
             }
-            
+            ps.Health -= 1 * Time.deltaTime;
             myAgent.enabled = false;
             Debug.Log("ÃŒÕ—“– ¿“¿ ”≈“");
             
