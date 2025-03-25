@@ -7,6 +7,7 @@ public class FuzzySilhouette : MonoBehaviour
     public float teleportDistance = 5f;
     public GameObject monster;
     public int rnd;
+    public PlayerController pl;
 
 
     void Start()

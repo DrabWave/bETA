@@ -19,13 +19,13 @@ public class PlayerController : MonoBehaviour
     private float MinMoveSpeed;
 
     private float CrowMoveSpeed;
-    private bool isCrowing;
+    public bool isCrowing;
 
     public float maxStamina;    
     public float currentStamina;        
     public float staminaRecoveryDelay; 
     private float lastStaminaUseTime;
-    private bool isRunning;
+    public bool isRunning;
 
 
     public GameObject cameraPosition;
@@ -72,11 +72,13 @@ public class PlayerController : MonoBehaviour
             pS.MoveSpeed = MaxMoveSpeed;
             currentStamina -=  Time.deltaTime;
             lastStaminaUseTime = Time.time;
+            isRunning = true;
 
 
         }
         else
         {
+            isRunning = false;
             pS.MoveSpeed = MinMoveSpeed;
             if (Time.time >= lastStaminaUseTime + staminaRecoveryDelay)
             {
@@ -92,12 +94,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.C) && isRunning == false)
         {
+            isCrowing = true;
             cameraPosition.transform.position = CrowlCameraPosition.transform.position;
             pS.MoveSpeed = CrowMoveSpeed;
         }
         else
         {
             cameraPosition.transform.position = StayCameraPosition.transform.position;
+            isCrowing = false;
         }
     }
 

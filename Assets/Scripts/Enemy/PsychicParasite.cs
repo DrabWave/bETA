@@ -12,6 +12,7 @@ public class PsychicParasite : MonoBehaviour
     private bool isShaking = false;
     private float StartshakeDuration;
     public PlayerStats ps;
+    public PlayerController pl;
     private void Start()
     {
         myAgent = GetComponent<NavMeshAgent>();
@@ -22,36 +23,72 @@ public class PsychicParasite : MonoBehaviour
     {
         distance = Vector3.Distance(transform.position, target.position);
 
-        if (distance > 10)
+        if (pl.isCrowing == false)
         {
-            myAgent.enabled = false;
-            isShaking = false;
-            camShake.shakeTime = StartshakeDuration;
-        }
-
-        if (distance <= 10 && distance > 3)
-        {
-            myAgent.enabled = true;
-            myAgent.SetDestination(target.transform.position);
-            isShaking = false;
-            camShake.shakeTime = StartshakeDuration;
-        }
-        if (distance <= 3)
-        {
-            isShaking = true;
-            if (isShaking)
+            if (distance > 10)
             {
-                camShake.shakeTime = 999999f;
-                camShake.TriggerShake();
+                myAgent.enabled = false;
+                isShaking = false;
+                camShake.shakeTime = StartshakeDuration;
             }
-            ps.Health -= 1 * Time.deltaTime;
-            myAgent.enabled = false;
-            Debug.Log("ÃŒÕ—“– ¿“¿ ”≈“");
-            
 
+
+            if (distance <= 10 && distance > 3)
+            {
+                myAgent.enabled = true;
+                myAgent.SetDestination(target.transform.position);
+                isShaking = false;
+                camShake.shakeTime = StartshakeDuration;
+            }
+
+            if (distance <= 3)
+            {
+                isShaking = true;
+                if (isShaking)
+                {
+                    camShake.shakeTime = 999999f;
+                    camShake.TriggerShake();
+                }
+                //ps.Health -= 1 * Time.deltaTime;
+                myAgent.enabled = false;
+                Debug.Log("ÃŒÕ—“– ¿“¿ ”≈“");
+
+
+            }
         }
+        else if (pl.isCrowing == true)
+        {
+            if (distance > 10)
+            {
+                myAgent.enabled = false;
+                isShaking = false;
+                camShake.shakeTime = StartshakeDuration;
+            }
 
 
+            if (distance <= 7 && distance > 3)
+            {
+                myAgent.enabled = true;
+                myAgent.SetDestination(target.transform.position);
+                isShaking = false;
+                camShake.shakeTime = StartshakeDuration;
+            }
+
+            if (distance <= 3)
+            {
+                isShaking = true;
+                if (isShaking)
+                {
+                    camShake.shakeTime = 999999f;
+                    camShake.TriggerShake();
+                }
+                //ps.Health -= 1 * Time.deltaTime;
+                myAgent.enabled = false;
+                Debug.Log("ÃŒÕ—“– ¿“¿ ”≈“");
+
+
+            }
+        }
 
 
 
