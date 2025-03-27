@@ -6,20 +6,20 @@ using Unity.VisualScripting;
 
 public class TagDefinition : MonoBehaviour
 {
-    // Матвей блять перепиши свой ебучий метод на определения тега, потому что из-за твоего постоянного не работает моя хуйня на двери. Нужна проверка клавиши как из {TakeObject.cs}
-    // говорю тебе, чтобы скрипты врагов не поплыли случайно
     public PlayerStats pS;
-
     public GameObject currentObject;
     public string TagDetective;
     public int MaxCountDoors;
+    // Общая дистанция для возможности подбирания ключей и открывания дверей ( и не только) будет равна 5, в будщем можно изменить
     public float distance;
+    public bool canTake;
      
     
 
     void Start()
     {
         for (int i = 0; i < MaxCountDoors; i++) { pS.Door[i] = false; }
+        for (int i = 0; i < MaxCountDoors; i++) { pS.DoorCards[i] = false; }
     }
 
 
@@ -40,11 +40,18 @@ public class TagDefinition : MonoBehaviour
             //Debug.Log(hit.collider.tag);
             TagDetective = hit.collider.tag;
             currentObject = hit.transform.gameObject;
-
-
+            distance = Vector3.Distance(transform.position, currentObject.transform.position);
+            if (distance <= 5f)
+            {
+                canTake = true;
+            }
+            else
+            {
+                canTake = false;
+            }
         } 
     }
-    private void OpenDoor(int indexDoor, int LastCountDoor)
+    private void OpenDoor(int indexDoor)
     {
         if (pS.Door.ContainsKey(indexDoor))
         {
@@ -52,14 +59,14 @@ public class TagDefinition : MonoBehaviour
             {
                 Debug.Log("PORNO");
             }
-            else if (pS.Keys.Contains(indexDoor) && pS.Keys[LastCountDoor] == indexDoor)
+            else if (pS.Keys.Contains(indexDoor))
             {
                 pS.Door[indexDoor] = true;
                 Destroy(currentObject);
             }
         }
     }
-
+    
     private void TakeKey(int indexKey)
     {
         if (currentObject != null)
@@ -68,53 +75,100 @@ public class TagDefinition : MonoBehaviour
             Destroy(currentObject);
         }
     }
+
+    private void TakeKeyCard(int indexKeyCard)
+    {
+        if (currentObject != null)
+        {
+            pS.KeyCards.Add(indexKeyCard);
+            Destroy(currentObject);
+        }
+    }
+
+    private void OpenDoorCard(int indexDoorCard)
+    {
+        int countCards = 0;
+        foreach (var i in pS.KeyCards)
+        {
+            if (i == indexDoorCard)
+            {
+                countCards++;
+            }
+        }
+        if (pS.DoorCards.ContainsKey(indexDoorCard))
+        {
+            if (pS.DoorCards[indexDoorCard])
+            {
+                Debug.Log("PORNO");
+            }
+            else if (pS.KeyCards.Contains(indexDoorCard) && countCards == 5)
+            {
+                pS.DoorCards[indexDoorCard] = true;
+                Destroy(currentObject);
+            }
+        }
+    }
+
+
    
 
     private void interaction()
     {
-        /*
-         * Door Keys
-         * 1    4 
-         * 2    9
-         * 3    14
-         * _____________
-         * i++  i+= n follow [0, 1000]
-         */
 
 
-        switch (TagDetective)
+        switch (TagDetective,canTake)
         {
-            case "RespawnDevice":
-                
+            //case "RespawnDevice":
+
+            //    break;
+
+            //case "AudioNote":
+            //    break;
+
+            //case "Note":
+            //    break;
+
+            //case "Battery":
+            //    break;
+
+            case ("KeyCard1", true):
+                TakeKeyCard(1);
                 break;
 
-            case "AudioNote":
+            case ("DoorCard1", true):
+                OpenDoorCard(1);
                 break;
 
-            case "Note":
+            case ("KeyCard2", true):
+                TakeKeyCard(2);
                 break;
 
-            case "Battery":
+            case ("DoorCard2", true):
+                OpenDoorCard(2);
                 break;
 
-            case "Key1":
+
+            case ("Key1", true):
                 TakeKey(1);
                 break;
 
-            case "Key2":
+            case ("Key2", true):
                 TakeKey(2);
                 break;
 
-            case "Door1":
-                OpenDoor(1, 4);
+            case ("Door1", true):
+                OpenDoor(1);
                 break;
-            
-            case "Door2":
-                OpenDoor(2, 9);
-                break;
+           
 
+
+                
+            
 
 
         }
+
+
+
     }
 }

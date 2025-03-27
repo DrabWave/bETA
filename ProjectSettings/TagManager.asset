@@ -13,6 +13,10 @@ TagManager:
   - Enemy
   - FuzzySilhouette
   - postprocessing
+  - KeyCard1
+  - DoorCard1
+  - KeyCard2
+  - DoorCard2
   layers:
   - Default
   - TransparentFX

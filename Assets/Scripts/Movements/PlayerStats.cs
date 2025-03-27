@@ -19,6 +19,9 @@ public class PlayerStats : MonoBehaviour
     public List<int> Keys = new List<int>();
     public Dictionary<int, bool> Door = new Dictionary<int, bool>();
 
+    public List<int> KeyCards = new List<int>();
+    public Dictionary<int, bool> DoorCards = new Dictionary<int, bool>(); 
+
     private void Start()
     {
         Player = transform;
