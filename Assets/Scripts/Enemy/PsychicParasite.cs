@@ -6,6 +6,7 @@ public class PsychicParasite : MonoBehaviour
 {
     // 2. Психические паразиты: Механика: Искажают интерфейс игрока: компас вращается, сообщения на экране заменяются угрозами.
     public Transform target;
+    public Enemies e;
     public float distance;
     NavMeshAgent myAgent;
     public CameraShake camShake;
@@ -49,7 +50,7 @@ public class PsychicParasite : MonoBehaviour
                     camShake.shakeTime = 999999f;
                     camShake.TriggerShake();
                 }
-                //ps.Health -= 1 * Time.deltaTime;
+                //e.Damage(1);
                 myAgent.enabled = false;
                 Debug.Log("МОНСТР АТАКУЕТ");
 
@@ -82,7 +83,7 @@ public class PsychicParasite : MonoBehaviour
                     camShake.shakeTime = 999999f;
                     camShake.TriggerShake();
                 }
-                //ps.Health -= 1 * Time.deltaTime;
+                //e.Damage(1);
                 myAgent.enabled = false;
                 Debug.Log("МОНСТР АТАКУЕТ");
 

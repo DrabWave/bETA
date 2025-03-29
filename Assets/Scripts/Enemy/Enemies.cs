@@ -7,7 +7,7 @@ public class Enemies : MonoBehaviour
 {
     public Transform Player;
     public Transform[] RandomPoint = new Transform[10];
-    private PlayerStats ps;
+    public PlayerStats ps;
 
     void Start()
     {
@@ -31,6 +31,13 @@ public class Enemies : MonoBehaviour
     {
         nowTransform.transform.position = RandomPoint[Random.Range(0, RandomPoint.Length)].position;
     }
+
+
+    public void TeleportRand(Transform nowTransform, Transform[] randompoints)
+    {
+        nowTransform.transform.position = randompoints[Random.Range(0, randompoints.Length)].position;
+    }
+
 
     public void Damage(float Damage)
     {
