@@ -18,6 +18,7 @@ public class Camera : MonoBehaviour
     private Vector3 _rotation;
     public float amount;
     public float speed;
+    internal Color backgroundColor;
 
     void Start()
     {

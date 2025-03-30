@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ElectricGhost : MonoBehaviour
@@ -8,66 +9,90 @@ public class ElectricGhost : MonoBehaviour
     public Enemies E;
     public PlayerStats pS;
     public Camera Canera;
-
+    public float distanceForAttack;
+    public Transform player;
+    public float distance;
     public float TimeOfStan;
-    public float Step;
-
     private Transform _positionElectricGhost;
-    private bool _isStan;
+    public bool _isStan;
     private float _First_TimeOfStan;
     private float _First_MoveSpeed;
     private float _First_SensivirtOfCamera;
-    //private Vector3 _First_PositionOfCamera;
 
 
     private void Start()
     {
         _positionElectricGhost = transform;
         _isStan = false;
-
+        distanceForAttack = 10f;
         _First_MoveSpeed = pS.MoveSpeed;
         _First_TimeOfStan = TimeOfStan;
-        //_First_PositionOfCamera = new Vector3(Canera.transform.rotation.x, Canera.transform.rotation.y, Canera.transform.rotation.z);
     }
 
     private void Update()
     {
-       // E.GoingToPlayer(_positionElectricGhost, Step);
+        distance = Vector3.Distance(transform.position, player.position);
 
-        if ( _isStan == true)
+        //if (distance < distanceForAttack)
+        //{
+        //    //Выключение света
+        //}
+
+        if (distance < 5f)
         {
+            //StartCoroutine(ScreenGlitch(Canera));
             Stan();
         }
 
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-       if (other.tag == "Player")
-       {
-            E.TeleportEnemy(_positionElectricGhost);
-            _isStan = true;
 
-            pS.MoveSpeed *= 0;
-            Canera.sentivity *= 0;
+    //IEnumerator ScreenGlitch(Camera camera)
+    //{
+    //    for (int i = 0; i < 15; i++)
+    //    {
+    //        camera.backgroundColor = Color.red;
+    //        yield return new WaitForSeconds(0.05f);
+    //        camera.backgroundColor = Color.black;
+    //        yield return new WaitForSeconds(0.05f);
+    //    }
+    //    camera.backgroundColor = Color.black;
+    //}
 
-        }
-    }
+    
+
+
 
 
 
     private void Stan()
     {
+        _isStan = true;
+        pS.MoveSpeed = 0;
         TimeOfStan -= Time.deltaTime;
         if (TimeOfStan < 0)
         {
+            E.TeleportEnemy(_positionElectricGhost);
             pS.MoveSpeed += _First_MoveSpeed;
             _isStan = false;
             TimeOfStan += _First_TimeOfStan;
-            Canera.sentivity += _First_SensivirtOfCamera;
         }
     }
 
-   
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        E.TeleportEnemy(_positionElectricGhost);
+    //        _isStan = true;
+
+    //        pS.MoveSpeed *= 0;
+    //        Canera.sentivity *= 0;
+
+    //    }
+    //}
+
+
 }

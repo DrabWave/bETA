@@ -11,7 +11,6 @@ public class KeysAndDoors : MonoBehaviour
         for (int i = 0; i < 2000; i++) { pS.DoorCards[i] = false; }
     }
 
-    // Update is called once per frame
     void Update()
     {
 

@@ -28,17 +28,6 @@ public class ShadowHunter : MonoBehaviour
         }
     }
 
-    //IEnumerator Attack()
-    //{
-    //    isAttack = true;
-    //    transform.position = player.position + (player.forward * 4f);
-
-    //    //yield return new WaitForSeconds(4f);
-
-    //    //e.TeleportRand(transform, RandomPointsShadowHunter);
-    //    isAttack = false;
-    //    yield return null;
-    //}
     private void AttackAndTeleport()
     {
         isAttack = true;

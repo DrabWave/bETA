@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public PlayerStats pS;
 
-    protected Vector3 movementVector;
+    public Vector3 movementVector;
 
     protected new Rigidbody rigidbody;
     protected Transform myTransform;
