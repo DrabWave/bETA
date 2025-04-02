@@ -17,6 +17,8 @@ TagManager:
   - DoorCard1
   - KeyCard2
   - DoorCard2
+  - SilentSalker
+  - SilentStalker
   layers:
   - Default
   - TransparentFX
