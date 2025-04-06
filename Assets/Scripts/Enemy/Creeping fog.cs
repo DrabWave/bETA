@@ -2,61 +2,49 @@ using UnityEngine;
 
 public class creepingfog : MonoBehaviour
 {
-    // Крадущийся туман: Создаёт облачность, которая затрудняет движение и видимость.
-
     public Enemies e;
     public PlayerStats ps;
-
-   
-    public float DecelerationTime;  // время замедления
-    private Transform _positionCreepingfog;
-    private bool _deceleration;
-    private float _FirstTimeDeceleration;
-    private float _FirstMS;
-    private string _FirsStatusOfVision;
-
-    public float Step;
-
-    void Start()
+    public PlayerController pl;
+    public Vector3 targetPoint;
+    public float moveSpeed;
+    public Transform player;
+    public float timeDeceleration;
+    public float decelerationMoveSpeed;
+    public float normalMoveSpeed;
+    private void Start()
     {
-        _positionCreepingfog = transform;
-        _deceleration = false;
-        _FirstMS = ps.MoveSpeed;
-        _FirstTimeDeceleration = DecelerationTime;
-        _FirsStatusOfVision = ps.StatusOfVision;
-
+        decelerationMoveSpeed = ps.MoveSpeed / 2;
+        normalMoveSpeed = ps.MoveSpeed;
+        timeDeceleration = 3f;
+        moveSpeed = 2f;
+        targetPoint = e.RandomPoint[Random.Range(0, e.RandomPoint.Length)].position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-       // e.GoingToPlayer(_positionCreepingfog, Step);
-
-        if (_deceleration) Deceleration();
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
+        if (Vector3.Distance(transform.position, targetPoint) > 2f)
         {
-            e.TeleportEnemy(_positionCreepingfog);
-            _deceleration = true;
-
-            ps.MoveSpeed /= 2;
-            ps.StatusOfVision = "Видимость плохая";
+            transform.position = Vector3.MoveTowards(transform.position, targetPoint,moveSpeed * Time.deltaTime);
         }
-    }
-
-    private void Deceleration()
-    {
-        DecelerationTime -= Time.deltaTime;
-        if (DecelerationTime < 0)
+        else
         {
-            ps.MoveSpeed = _FirstMS;
-            ps.StatusOfVision = _FirsStatusOfVision;
-            _deceleration= false;
-            DecelerationTime += _FirstTimeDeceleration;
+            targetPoint = e.RandomPoint[Random.Range(0, e.RandomPoint.Length)].position;
+        }
+
+
+        if (Vector3.Distance(transform.position, player.position) <= 3f)
+        {
+            pl.canSprint = false;
+            ps.MoveSpeed = decelerationMoveSpeed;
+        }
+        else
+        {
+            timeDeceleration -= Time.deltaTime;
+            if (timeDeceleration <= 0)
+            {
+                ps.MoveSpeed = normalMoveSpeed;
+                pl.canSprint = true;
+            }
         }
     }
 

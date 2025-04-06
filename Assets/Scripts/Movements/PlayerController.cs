@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private float lastStaminaUseTime;
     public bool isRunning;
 
+    public bool canSprint;
+
 
     public GameObject cameraPosition;
     public GameObject CrowlCameraPosition;
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
         
         isRunning = false;
         isCrowing = false;
-
+        canSprint = true;
 
 
         StayCameraPosition.transform.position = cameraPosition.transform.position;
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    protected void Update()
+    public void Update()
     {
         Sprint();
         Crawl();
@@ -66,28 +68,35 @@ public class PlayerController : MonoBehaviour
 
     private void Sprint()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && currentStamina > 0)
+        if (canSprint == true)
         {
-
-            pS.MoveSpeed = MaxMoveSpeed;
-            currentStamina -=  Time.deltaTime;
-            lastStaminaUseTime = Time.time;
-            isRunning = true;
-
-
-        }
-        else
-        {
-            isRunning = false;
-            pS.MoveSpeed = MinMoveSpeed;
-            if (Time.time >= lastStaminaUseTime + staminaRecoveryDelay)
+            if (Input.GetKey(KeyCode.LeftShift) && currentStamina > 0)
             {
-                
-                currentStamina += Time.deltaTime;
-                
+                pS.MoveSpeed = MaxMoveSpeed;
+
+
+                currentStamina -= Time.deltaTime;
+                lastStaminaUseTime = Time.time;
+                isRunning = true;
+
+
             }
+            else
+            {
+                isRunning = false;
+                pS.MoveSpeed = MinMoveSpeed;
+
+
+                if (Time.time >= lastStaminaUseTime + staminaRecoveryDelay)
+                {
+
+                    currentStamina += Time.deltaTime;
+
+                }
+            }
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
         }
-        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+        
     }
 
     private void Crawl()

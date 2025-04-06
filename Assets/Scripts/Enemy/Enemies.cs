@@ -39,12 +39,11 @@ public class Enemies : MonoBehaviour
     }
 
 
+
     public void Damage(float Damage)
     {
         ps.Health-= Damage;
     }
-
-
 
 
 }
