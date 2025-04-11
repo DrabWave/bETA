@@ -50,7 +50,7 @@ public class PsychicParasite : MonoBehaviour
                     camShake.shakeTime = 999999f;
                     camShake.TriggerShake();
                 }
-                //e.Damage(1);
+                e.Damage(1);
                 myAgent.enabled = false;
                 Debug.Log("ÃŒÕ—“– ¿“¿ ”≈“");
 
@@ -83,7 +83,7 @@ public class PsychicParasite : MonoBehaviour
                     camShake.shakeTime = 999999f;
                     camShake.TriggerShake();
                 }
-                //e.Damage(1);
+                e.Damage(1);
                 myAgent.enabled = false;
                 Debug.Log("ÃŒÕ—“– ¿“¿ ”≈“");
 

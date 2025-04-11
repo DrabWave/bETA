@@ -19,6 +19,10 @@ TagManager:
   - DoorCard2
   - SilentSalker
   - SilentStalker
+  - Terminal1
+  - Terminal2
+  - Terminal3
+  - Terminal4
   layers:
   - Default
   - TransparentFX

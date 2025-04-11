@@ -4,6 +4,7 @@ public class KeysAndDoors : MonoBehaviour
 {
     public PlayerStats pS;
     public TagDefinition tg;
+    public TerinalsForSave ter;
 
     void Start()
     {
@@ -127,6 +128,21 @@ public class KeysAndDoors : MonoBehaviour
             case ("Door1", true):
                 OpenDoor(1);
                 break;
+
+
+            case ("Terminal1", true):
+                ter.ActivateTerminals(1);
+                break;
+            case ("Terminal2", true):
+                ter.ActivateTerminals(2);
+                break;
+            case ("Terminal3", true):
+                ter.ActivateTerminals(3);
+                break;
+            case ("Terminal4", true):
+                ter.ActivateTerminals(4);
+                break;
+
 
 
 
