@@ -4,7 +4,6 @@ public class KeysAndDoors : MonoBehaviour
 {
     public PlayerStats pS;
     public TagDefinition tg;
-    public TerinalsForSave ter;
 
     void Start()
     {
@@ -16,7 +15,7 @@ public class KeysAndDoors : MonoBehaviour
     {
 
     }
-    private void OpenDoor(int indexDoor)
+    public void OpenDoor(int indexDoor)
     {
         if (pS.Door.ContainsKey(indexDoor))
         {
@@ -34,7 +33,7 @@ public class KeysAndDoors : MonoBehaviour
         }
     }
 
-    private void TakeKey(int indexKey)
+    public void TakeKey(int indexKey)
     {
         if (tg.currentObject != null)
         {
@@ -43,7 +42,7 @@ public class KeysAndDoors : MonoBehaviour
         }
     }
 
-    private void TakeKeyCard(int indexKeyCard)
+    public void TakeKeyCard(int indexKeyCard)
     {
         if (tg.currentObject != null)
         {
@@ -52,7 +51,7 @@ public class KeysAndDoors : MonoBehaviour
         }
     }
 
-    private void OpenDoorCard(int indexDoorCard)
+    public void OpenDoorCard(int indexDoorCard)
     {
         int countCards = 0;
         foreach (var i in pS.KeyCards)
@@ -81,77 +80,7 @@ public class KeysAndDoors : MonoBehaviour
 
 
 
-    public void interaction()
-    {
-
-
-        switch (tg.TagDetective, tg.canTake)
-        {
-            //case "RespawnDevice":
-
-            //    break;
-
-            //case "AudioNote":
-            //    break;
-
-            //case "Note":
-            //    break;
-
-            //case "Battery":
-            //    break;
-
-            case ("KeyCard1", true):
-                TakeKeyCard(1);
-                break;
-
-            case ("DoorCard1", true):
-                OpenDoorCard(1);
-                break;
-
-            case ("KeyCard2", true):
-                TakeKeyCard(2);
-                break;
-
-            case ("DoorCard2", true):
-                OpenDoorCard(2);
-                break;
-
-
-            case ("Key1", true):
-                TakeKey(1);
-                break;
-
-            case ("Key2", true):
-                TakeKey(2);
-                break;
-
-            case ("Door1", true):
-                OpenDoor(1);
-                break;
-
-
-            case ("Terminal1", true):
-                ter.ActivateTerminals(1);
-                break;
-            case ("Terminal2", true):
-                ter.ActivateTerminals(2);
-                break;
-            case ("Terminal3", true):
-                ter.ActivateTerminals(3);
-                break;
-            case ("Terminal4", true):
-                ter.ActivateTerminals(4);
-                break;
-
-
-
-
-
-
-
-
-        }
+    
 
 
     }
-}

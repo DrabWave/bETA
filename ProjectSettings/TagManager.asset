@@ -23,6 +23,7 @@ TagManager:
   - Terminal2
   - Terminal3
   - Terminal4
+  - RespawnDevice
   layers:
   - Default
   - TransparentFX
