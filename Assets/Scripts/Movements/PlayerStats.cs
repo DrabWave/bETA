@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
-
+    public HUD HUD;
     
     public float MindLevel;
     
@@ -41,7 +41,7 @@ public class PlayerStats : MonoBehaviour
         //Debug.Log(StatusOfInterface);
 
         if (Health <= 0) Dead();
-        if (Batteries < 0) Batteries = 0;
+
 
     }
 
@@ -51,5 +51,6 @@ public class PlayerStats : MonoBehaviour
         // DeadScreen.UI.isEnable = true;
         Player.transform.position = respawnPoint.transform.position;
         Health = 3f;
+        HUD.img_LevelBattary.fillAmount = 0;
     }
 }

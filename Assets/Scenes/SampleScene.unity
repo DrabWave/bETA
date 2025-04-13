@@ -101077,6 +101077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0afcb9848f5544e8abb39810488380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUD: {fileID: 1317914450}
   MindLevel: 0
   Batteries: 0
   respawnPoint: {fileID: 516431928}
