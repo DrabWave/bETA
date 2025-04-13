@@ -19,6 +19,6 @@ public class TriggerLeft : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        throw new NotImplementedException();
+        if (pS.Keys.Contains(1)) Destroy(gameObject);
     }
 }

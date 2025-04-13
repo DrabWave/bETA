@@ -8,6 +8,8 @@ using System.Runtime.ConstrainedExecution;
 public class TagDefinition : MonoBehaviour
 {
     public PlayerStats pS;
+    public HUD HUD;
+
     public GameObject currentObject;
     public KeysAndDoors KD;
     public Transform player;
@@ -15,6 +17,9 @@ public class TagDefinition : MonoBehaviour
     // Общая дистанция для возможности подбирания ключей и открывания дверей ( и не только) будет равна 5, в будщем можно изменить
     public float distance;
     public bool canTake;
+
+    RaycastHit hit;
+    Ray ray;
 
 
 
@@ -33,9 +38,9 @@ public class TagDefinition : MonoBehaviour
 
     public void TagDetectiving()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        ray = new Ray(transform.position, transform.forward);
 
-        RaycastHit hit;
+        
         if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.collider.tag);
@@ -58,6 +63,12 @@ public class TagDefinition : MonoBehaviour
 
         switch (TagDetective, canTake)
         {
+
+            case ("Battery", true):
+                pS.Batteries++;
+                HUD.img_LevelBattary.fillAmount = 1;
+                break;
+
             case ("RespawnDevice", true):
                 pS.respawnPoint.position = player.position;
                 Debug.Log("Установлена новая точка сохранеия!");
@@ -91,10 +102,6 @@ public class TagDefinition : MonoBehaviour
             case ("Door1", true):
                 KD.OpenDoor(1);
                 break;
-
-
-
-
 
 
 

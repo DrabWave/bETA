@@ -1,12 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
 
-    // *new ��������. ��������: ���� ���������� �� ���������� � �������. ������ ���� ������� ������� ���������, ����� ��� �������� ���������� � �����.
-    // 
+    
     public float MindLevel;
+    
+    public float Batteries;
+
+
 
     private Transform Player;
     public Transform respawnPoint;
@@ -36,6 +41,8 @@ public class PlayerStats : MonoBehaviour
         //Debug.Log(StatusOfInterface);
 
         if (Health <= 0) Dead();
+        if (Batteries < 0) Batteries = 0;
+
     }
 
 

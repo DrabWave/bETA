@@ -24,6 +24,7 @@ TagManager:
   - Terminal3
   - Terminal4
   - RespawnDevice
+  - Battery
   layers:
   - Default
   - TransparentFX
