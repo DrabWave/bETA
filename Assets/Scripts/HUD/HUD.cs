@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
@@ -12,6 +13,10 @@ public class HUD : MonoBehaviour
     public float TimeWorkingBattery;
 
 
+    private void Start()
+    {
+
+    }
 
 
     private void Update()
@@ -30,4 +35,5 @@ public class HUD : MonoBehaviour
         }
     }
 
+    
 }

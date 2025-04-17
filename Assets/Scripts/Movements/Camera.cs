@@ -10,6 +10,7 @@ public class Camera : MonoBehaviour
     // блять тряску при ходьбе сделать
 
     public float sentivity;
+    private float _sentivity_current;
     public float maxYAngle = 80.0f;
 
     private float rotationX = 0.0f;
@@ -22,7 +23,7 @@ public class Camera : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        
         Cursor.visible = false;
         
     }

@@ -6,7 +6,6 @@ using Unity.VisualScripting;
 public class Menu : MonoBehaviour
 {
 
-
     public void ButtonPlay()
     {
         SceneManager.LoadScene(1);
