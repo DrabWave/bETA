@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class EscapePanel : MonoBehaviour
 {
-    private Camera Camera;
+    public Camera Camera;
 
     public GameObject PanelEscapeMenu;
     
@@ -26,13 +26,21 @@ public class EscapePanel : MonoBehaviour
 
     public void OpenEscapeMenu()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) { PanelEscapeMenu.SetActive(true); Cursor.visible = true; }
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        { 
+            PanelEscapeMenu.SetActive(true); 
+            
+            Cursor.visible = true; 
+            Camera.StopSentivity(true); 
+        }
         
     }
     public void CloseEscapeMenu()
     {
         PanelEscapeMenu.SetActive(false);
+        
         Cursor.visible = false;
+        Camera.StopSentivity(false);
     }
     public void OpenFirstMenu()
     {

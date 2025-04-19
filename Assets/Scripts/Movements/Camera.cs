@@ -23,9 +23,10 @@ public class Camera : MonoBehaviour
 
     void Start()
     {
-        
+
         Cursor.visible = false;
-        
+        _sentivity_current = sentivity;
+
     }
 
 
@@ -42,8 +43,8 @@ public class Camera : MonoBehaviour
         rotationX -= mouseY * sentivity;
         rotationX = Mathf.Clamp(rotationX, -maxYAngle, maxYAngle);
         transform.localRotation = Quaternion.Euler(rotationX, 0.0f, 0.0f);
-        
-        
+
+
 
 
     }
@@ -51,5 +52,11 @@ public class Camera : MonoBehaviour
     internal Vector3 WorldToViewportPoint(Vector3 position)
     {
         throw new NotImplementedException();
+    }
+
+    public void StopSentivity(bool isSentivity) // stopping game screen when we are using EscapeMenu
+    {
+        if (isSentivity == true) sentivity *= 0;
+        else sentivity = _sentivity_current;
     }
 }
