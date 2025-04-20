@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
@@ -48,7 +49,8 @@ public class PlayerStats : MonoBehaviour
 
     private void Dead()
     {
-        // DeadScreen.UI.isEnable = true;
+        SceneManager.LoadScene(2);
+        Cursor.visible = true;
         Player.transform.position = respawnPoint.transform.position;
         Health = 3f;
         HUD.img_LevelBattary.fillAmount = 0;
