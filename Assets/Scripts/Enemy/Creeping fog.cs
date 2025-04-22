@@ -1,51 +1,82 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class creepingfog : MonoBehaviour
 {
     public Enemies e;
     public PlayerStats ps;
     public PlayerController pl;
-    public Vector3 targetPoint;
-    public float moveSpeed;
+    private Vector3 targetPoint;
     public Transform player;
+    public Transform[] targetPoints = new Transform[6];
     public float timeDeceleration;
-    public float decelerationMoveSpeed;
-    public float normalMoveSpeed;
+    private float decelerationMoveSpeed;
+    private float normalMoveSpeed;
+
+    private float distanceToPlayer;
+    private float distanceToTargetPoint;
+
+    private bool isPlayerSlowed;
+
+    NavMeshAgent myAgent;
     private void Start()
     {
-        decelerationMoveSpeed = ps.MoveSpeed / 2;
+        myAgent = GetComponent<NavMeshAgent>();
+        decelerationMoveSpeed = ps.MoveSpeed - 2;
         normalMoveSpeed = ps.MoveSpeed;
-        timeDeceleration = 3f;
-        moveSpeed = 2f;
-        targetPoint = e.RandomPoint[Random.Range(0, e.RandomPoint.Length)].position;
+        timeDeceleration = 5f;
+        targetPoint = targetPoints[Random.Range(0, targetPoints.Length)].position;
     }
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, targetPoint) > 2f)
+        distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        distanceToTargetPoint = Vector3.Distance(transform.position, targetPoint);
+
+        myAgent.enabled = true;
+        
+        if (distanceToTargetPoint > 3)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPoint,moveSpeed * Time.deltaTime);
+            myAgent.SetDestination(targetPoint);
         }
         else
         {
-            targetPoint = e.RandomPoint[Random.Range(0, e.RandomPoint.Length)].position;
+            targetPoint = targetPoints[Random.Range(0, targetPoints.Length)].position;
         }
 
 
-        if (Vector3.Distance(transform.position, player.position) <= 3f)
+        if (distanceToPlayer <= 3)
         {
-            pl.canSprint = false;
-            ps.MoveSpeed = decelerationMoveSpeed;
+            ApplyDeceleration();
+            timeDeceleration = 5f; 
         }
-        else
+        else if (isPlayerSlowed)
         {
+
             timeDeceleration -= Time.deltaTime;
+
             if (timeDeceleration <= 0)
             {
-                ps.MoveSpeed = normalMoveSpeed;
-                pl.canSprint = true;
+                RemoveDeceleration();
             }
+        }
+        
+    }
+
+    private void ApplyDeceleration()
+    {
+        if (!isPlayerSlowed)
+        {
+            ps.MoveSpeed = decelerationMoveSpeed;
+            pl.canSprint = false;
+            isPlayerSlowed = true;
         }
     }
 
+    private void RemoveDeceleration()
+    {
+        ps.MoveSpeed = normalMoveSpeed;
+        pl.canSprint = true;
+        isPlayerSlowed = false;
+    }
 }

@@ -34,6 +34,10 @@ public class PsychicParasite : MonoBehaviour
         playerOnPlane = PlayerOnPlane(target.position);
         distance = Vector3.Distance(transform.position, target.position);
 
+        if (Psychicparasite.enabled == false) myAgent.enabled = false;
+        else myAgent.enabled = true;
+
+
         if (pl.isCrowing == false)
         {
             if (distance > 20 || !playerOnPlane)
