@@ -8,14 +8,23 @@ public class SilentStalker : MonoBehaviour
     public Transform player;
     public TagDefinition tg;
     public float followDistance = 5f; //расстояние преследование до игрока
-    public float speed = 5f; //скорость монстра
+    public float speed = 8f; //скорость монстра
     public Camera playerCamera;
+    public Renderer stalker;
 
+    private void Start()
+    {
+        stalker.enabled = false;
+    }
     private void Update()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer > followDistance) FollowPlayer();
-        if (tg.TagDetective == "SilentStalker") TeleportBehindPlayer();
+        if (stalker.enabled == true)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            if (distanceToPlayer > followDistance) FollowPlayer();
+            if (tg.TagDetective == "SilentStalker") TeleportBehindPlayer();
+        }
+        
     }
 
     private void TeleportBehindPlayer()

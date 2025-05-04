@@ -37,7 +37,7 @@ public class PlayerStats : MonoBehaviour
     {
         
         //Debug.Log(Health);
-        Debug.Log(MoveSpeed);
+        //Debug.Log(MoveSpeed);
         //Debug.Log(StatusOfVision);
         //Debug.Log(StatusOfInterface);
 

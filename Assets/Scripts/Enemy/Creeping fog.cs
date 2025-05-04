@@ -18,6 +18,8 @@ public class creepingfog : MonoBehaviour
 
     private bool isPlayerSlowed;
 
+    public Renderer CreepingFog;
+
     NavMeshAgent myAgent;
     private void Start()
     {
@@ -26,6 +28,7 @@ public class creepingfog : MonoBehaviour
         normalMoveSpeed = ps.MoveSpeed;
         timeDeceleration = 5f;
         targetPoint = targetPoints[Random.Range(0, targetPoints.Length)].position;
+        CreepingFog.enabled = false;
     }
 
     private void Update()
@@ -33,33 +36,39 @@ public class creepingfog : MonoBehaviour
         distanceToPlayer = Vector3.Distance(transform.position, player.position);
         distanceToTargetPoint = Vector3.Distance(transform.position, targetPoint);
 
-        myAgent.enabled = true;
-        
-        if (distanceToTargetPoint > 3)
-        {
-            myAgent.SetDestination(targetPoint);
-        }
-        else
-        {
-            targetPoint = targetPoints[Random.Range(0, targetPoints.Length)].position;
-        }
+        if (CreepingFog.enabled == false) myAgent.enabled = false;
+        else myAgent.enabled = true;
 
 
-        if (distanceToPlayer <= 3)
+        if (myAgent.enabled == true)
         {
-            ApplyDeceleration();
-            timeDeceleration = 5f; 
-        }
-        else if (isPlayerSlowed)
-        {
-
-            timeDeceleration -= Time.deltaTime;
-
-            if (timeDeceleration <= 0)
+            if (distanceToTargetPoint > 3)
             {
-                RemoveDeceleration();
+                myAgent.SetDestination(targetPoint);
+            }
+            else
+            {
+                targetPoint = targetPoints[Random.Range(0, targetPoints.Length)].position;
+            }
+
+
+            if (distanceToPlayer <= 3)
+            {
+                ApplyDeceleration();
+                timeDeceleration = 5f;
+            }
+            else if (isPlayerSlowed)
+            {
+
+                timeDeceleration -= Time.deltaTime;
+
+                if (timeDeceleration <= 0)
+                {
+                    RemoveDeceleration();
+                }
             }
         }
+        
         
     }
 
