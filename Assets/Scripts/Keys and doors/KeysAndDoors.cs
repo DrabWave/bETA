@@ -4,11 +4,12 @@ public class KeysAndDoors : MonoBehaviour
 {
     public PlayerStats pS;
     public TagDefinition tg;
+    public bool[] toOpen;
 
     void Start()
     {
         for (int i = 0; i < 2000; i++) { pS.Door[i] = false; }
-        for (int i = 0; i < 2000; i++) { pS.DoorCards[i] = false; }
+        for (int i = 0; i < 2000; i++) { pS.DoorCards[i] = false; toOpen[i] = false; }
     }
 
     void Update()
@@ -22,12 +23,14 @@ public class KeysAndDoors : MonoBehaviour
             if (pS.Door[indexDoor])
             {
                 Debug.Log("PORNO");
+                
             }
             else if (pS.Keys.Contains(indexDoor))
             {
                 pS.Door[indexDoor] = true;
-                Destroy(tg.currentObject);
-                Debug.Log("Дверь открыта");
+                toOpen[indexDoor] = true;
+                //Destroy(tg.currentObject);
+                //Debug.Log("Дверь открыта");
             }
             else { Debug.Log("Не удалось открыть дверь - нет ключа"); }
         }

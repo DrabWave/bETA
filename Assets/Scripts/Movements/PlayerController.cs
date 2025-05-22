@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Sounds
 {
 
     // Стелс систему сделать, *обсудить с Матвеем
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
             {
                 isRunning = false;
                 pS.MoveSpeed = MinMoveSpeed;
-
+                //PlaySound(sounds[0]);
 
                 if (Time.time >= lastStaminaUseTime + staminaRecoveryDelay)
                 {

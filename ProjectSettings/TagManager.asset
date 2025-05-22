@@ -13,10 +13,6 @@ TagManager:
   - Enemy
   - FuzzySilhouette
   - postprocessing
-  - KeyCard1
-  - DoorCard1
-  - KeyCard2
-  - DoorCard2
   - SilentSalker
   - SilentStalker
   - Terminal1
@@ -25,6 +21,13 @@ TagManager:
   - Terminal4
   - RespawnDevice
   - Battery
+  - Key3
+  - Key4
+  - Key5
+  - Door3
+  - Door4
+  - Door5
+  - Door
   layers:
   - Default
   - TransparentFX
