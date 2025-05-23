@@ -57,12 +57,14 @@ public class PlayerController : Sounds
     {
         Sprint();
         Crawl();
+
        
 
         //Debug.Log(pS.MoveSpeed);
 
         movementVector = transform.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * transform.forward;
         rigidbody.MovePosition(myTransform.position + movementVector * pS.MoveSpeed * Time.fixedDeltaTime);
+
     }
 
 
@@ -85,7 +87,7 @@ public class PlayerController : Sounds
             {
                 isRunning = false;
                 pS.MoveSpeed = MinMoveSpeed;
-                //PlaySound(sounds[0]);
+                
 
                 if (Time.time >= lastStaminaUseTime + staminaRecoveryDelay)
                 {

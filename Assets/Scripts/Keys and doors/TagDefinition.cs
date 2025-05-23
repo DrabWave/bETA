@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 using Unity.VisualScripting;
 using System.Runtime.ConstrainedExecution;
 
-public class TagDefinition : MonoBehaviour
+public class TagDefinition : Sounds
 {
     public PlayerStats pS;
     public HUD HUD;
@@ -116,6 +116,8 @@ public class TagDefinition : MonoBehaviour
             case ("Door", true):
                 Door[0].OpenDoor(true);
                 Door[1].OpenDoor(true);
+                
+                PlaySound(sounds[1]);
                 break;
 
             case ("Door1", true):
@@ -123,6 +125,8 @@ public class TagDefinition : MonoBehaviour
                 if (KD.toOpen[1] == true) {
                     Door1[0].OpenDoor(true);
                     Door1[1].OpenDoor(true);
+
+                    PlaySound(sounds[1]);
                 }
                 break;
 
@@ -133,6 +137,8 @@ public class TagDefinition : MonoBehaviour
                 {
                     Door2[0].OpenDoor(true);
                     Door2[1].OpenDoor(true);
+
+                    PlaySound(sounds[1]);
                 }
                 break;
 
@@ -143,6 +149,8 @@ public class TagDefinition : MonoBehaviour
                 {
                     Door3[0].OpenDoor(true);
                     Door3[1].OpenDoor(true);
+
+                    PlaySound(sounds[1]);
                 }
                 break;
 
@@ -153,6 +161,8 @@ public class TagDefinition : MonoBehaviour
                 {
                     Door4[0].OpenDoor(true);
                     Door4[1].OpenDoor(true);
+
+                    PlaySound(sounds[1]);
                 }
                 break;
 
@@ -163,6 +173,8 @@ public class TagDefinition : MonoBehaviour
                 {
                     Door5[0].OpenDoor(true);
                     Door5[1].OpenDoor(true);
+
+                    PlaySound(sounds[1]);
                 }
                 break;
 
