@@ -120,7 +120,7 @@ public class TagDefinition : MonoBehaviour
 
             case ("Door1", true):
                 KD.OpenDoor(1);
-                if (KD.toOpen[0] == true) {
+                if (KD.toOpen[1] == true) {
                     Door1[0].OpenDoor(true);
                     Door1[1].OpenDoor(true);
                 }
@@ -129,7 +129,7 @@ public class TagDefinition : MonoBehaviour
             case ("Door2", true):
                 KD.OpenDoor(2);
 
-                if (KD.toOpen[1] == true)
+                if (KD.toOpen[2] == true)
                 {
                     Door2[0].OpenDoor(true);
                     Door2[1].OpenDoor(true);
@@ -139,7 +139,7 @@ public class TagDefinition : MonoBehaviour
             case ("Door3", true):
                 KD.OpenDoor(3);
 
-                if (KD.toOpen[2] == true)
+                if (KD.toOpen[3] == true)
                 {
                     Door3[0].OpenDoor(true);
                     Door3[1].OpenDoor(true);
@@ -149,7 +149,7 @@ public class TagDefinition : MonoBehaviour
             case ("Door4", true):
                 KD.OpenDoor(4);
 
-                if (KD.toOpen[3] == true)
+                if (KD.toOpen[4] == true)
                 {
                     Door4[0].OpenDoor(true);
                     Door4[1].OpenDoor(true);
@@ -159,7 +159,7 @@ public class TagDefinition : MonoBehaviour
             case ("Door5", true):
                 KD.OpenDoor(5);
 
-                if (KD.toOpen[4] == true)
+                if (KD.toOpen[5] == true)
                 {
                     Door5[0].OpenDoor(true);
                     Door5[1].OpenDoor(true);
