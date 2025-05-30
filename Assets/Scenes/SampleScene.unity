@@ -163392,6 +163392,37 @@ Transform:
   - {fileID: 502399329}
   m_Father: {fileID: 1765974130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1220117897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1220117898}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1220117898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220117897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 400.18, y: 2.389, z: 109.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1220627136
 GameObject:
   m_ObjectHideFlags: 0
@@ -202324,7 +202355,7 @@ MonoBehaviour:
   HUD: {fileID: 1317914450}
   MindLevel: 0
   Batteries: 0
-  respawnPoint: {fileID: 0}
+  respawnPoint: {fileID: 1220117898}
   Health: 3
   MoveSpeed: 7
   StatusOfVision: "\u041A\u0430\u043C\u0435\u0440\u0430 \u0432 \u043F\u043E\u0440\u044F\u0434\u043A\u0435"
@@ -460802,3 +460833,4 @@ SceneRoots:
   - {fileID: 1137901431}
   - {fileID: 2004535268}
   - {fileID: 1316090935}
+  - {fileID: 1220117898}

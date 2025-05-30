@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : Sounds
@@ -30,6 +31,7 @@ public class PlayerController : Sounds
     public bool canSprint;
 
 
+
     public GameObject cameraPosition;
     public GameObject CrowlCameraPosition;
     public GameObject StayCameraPosition;
@@ -42,11 +44,9 @@ public class PlayerController : Sounds
         MinMoveSpeed = pS.MoveSpeed;
         currentStamina = maxStamina;       
         CrowMoveSpeed = pS.MoveSpeed / 2f;
-        
         isRunning = false;
         isCrowing = false;
         canSprint = true;
-
 
         StayCameraPosition.transform.position = cameraPosition.transform.position;
         //_current_cameraPosition = new Vector3(cameraPosition.transform.position.x, cameraPosition.transform.position.y, cameraPosition.transform.position.z);
@@ -63,9 +63,15 @@ public class PlayerController : Sounds
         //Debug.Log(pS.MoveSpeed);
 
         movementVector = transform.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * transform.forward;
+        
+        
+        
+        
         rigidbody.MovePosition(myTransform.position + movementVector * pS.MoveSpeed * Time.fixedDeltaTime);
 
     }
+
+    
 
 
     private void Sprint()
