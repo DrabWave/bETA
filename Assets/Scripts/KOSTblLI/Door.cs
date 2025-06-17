@@ -1,8 +1,8 @@
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Door : MonoBehaviour
 {
-
 
 
     private Animator anim;
@@ -17,5 +17,6 @@ public class Door : MonoBehaviour
     public void OpenDoor(bool toOpen)
     {
         anim.enabled = toOpen;
+        
     }
 }

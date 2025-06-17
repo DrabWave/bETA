@@ -1,10 +1,11 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerController : Sounds
+public class PlayerController : MonoBehaviour
 {
 
-    // Стелс систему сделать, *обсудить с Матвеем
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, *пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
     [SerializeField]
@@ -14,6 +15,8 @@ public class PlayerController : Sounds
 
     protected new Rigidbody rigidbody;
     protected Transform myTransform;
+
+    public Sounds sos;
 
 
     private float MaxMoveSpeed; 
@@ -30,6 +33,8 @@ public class PlayerController : Sounds
 
     public bool canSprint;
 
+    public GameObject PrefabAudio;
+    public int time, moveTime;
 
 
     public GameObject cameraPosition;
@@ -57,21 +62,39 @@ public class PlayerController : Sounds
     {
         Sprint();
         Crawl();
+        
 
-       
 
         //Debug.Log(pS.MoveSpeed);
 
         movementVector = transform.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * transform.forward;
-        
-        
-        
-        
         rigidbody.MovePosition(myTransform.position + movementVector * pS.MoveSpeed * Time.fixedDeltaTime);
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            if (time != 0) return;
+            time = moveTime;
+
+            GameObject _temp = Instantiate(PrefabAudio);
+            _temp.GetComponent<AudioSource>().clip = sos.sounds[0];
+            _temp.GetComponent<AudioSource>().Play();
+            Destroy(_temp, 0.8f);
+
+        }
+
+
+
 
     }
 
-    
+    private void FixedUpdate()
+    {
+        if (time > 0)
+        {
+            time--;
+        }
+    }
+
 
 
     private void Sprint()
@@ -121,11 +144,4 @@ public class PlayerController : Sounds
             isCrowing = false;
         }
     }
-
-
-
-
-
-
-    
 }

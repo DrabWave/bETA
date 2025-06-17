@@ -7,7 +7,6 @@ using UnityEngine.Rendering;
 
 public class Camera : MonoBehaviour
 {
-    // блять тряску при ходьбе сделать
 
     public float sentivity;
     private float _sentivity_current;

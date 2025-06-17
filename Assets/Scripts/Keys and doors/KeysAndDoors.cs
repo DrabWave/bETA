@@ -4,6 +4,8 @@ public class KeysAndDoors : MonoBehaviour
 {
     public PlayerStats pS;
     public TagDefinition tg;
+
+    //фикс бага
     public bool[] toOpen;
 
     void Start()
@@ -20,12 +22,7 @@ public class KeysAndDoors : MonoBehaviour
     {
         if (pS.Door.ContainsKey(indexDoor))
         {
-            if (pS.Door[indexDoor])
-            {
-                Debug.Log("PORNO");
-                
-            }
-            else if (pS.Keys.Contains(indexDoor))
+            if (pS.Keys.Contains(indexDoor))
             {
                 pS.Door[indexDoor] = true;
                 toOpen[indexDoor] = true;
@@ -44,6 +41,10 @@ public class KeysAndDoors : MonoBehaviour
             Destroy(tg.currentObject);
         }
     }
+
+
+
+
 
     public void TakeKeyCard(int indexKeyCard)
     {
@@ -66,11 +67,7 @@ public class KeysAndDoors : MonoBehaviour
         }
         if (pS.DoorCards.ContainsKey(indexDoorCard))
         {
-            if (pS.DoorCards[indexDoorCard])
-            {
-                Debug.Log("PORNO");
-            }
-            else if (pS.KeyCards.Contains(indexDoorCard) && countCards == 5)
+            if (pS.KeyCards.Contains(indexDoorCard) && countCards == 5)
             {
                 pS.DoorCards[indexDoorCard] = true;
                 Destroy(tg.currentObject);

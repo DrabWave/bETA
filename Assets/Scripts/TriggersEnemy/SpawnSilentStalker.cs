@@ -4,6 +4,7 @@ public class TriggerSilentStalker : MonoBehaviour
 {
     public SilentStalker stalk;
     public Transform player;
+    public Sounds sos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

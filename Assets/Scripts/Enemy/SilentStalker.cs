@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SilentStalker : MonoBehaviour
 {
+    public Sounds sos;
 
     public Transform player;
     public TagDefinition tg;
@@ -11,6 +12,8 @@ public class SilentStalker : MonoBehaviour
     public float speed = 8f; //скорость монстра
     public Camera playerCamera;
     public Renderer stalker;
+
+    public float time;
 
     private void Start()
     {
@@ -23,9 +26,35 @@ public class SilentStalker : MonoBehaviour
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
             if (distanceToPlayer > followDistance) FollowPlayer();
             if (tg.TagDetective == "SilentStalker") TeleportBehindPlayer();
+
+
+            if (time <= 0)
+            {
+                time = sos.sounds[4].length;
+            }
+            if (time == sos.sounds[4].length)
+            {
+                sos.PlaySound(sos.sounds[4],100f);
+            }
         }
+
         
+
+
     }
+
+    private void FixedUpdate()
+    {
+        if (stalker.enabled == true)
+        {
+            time -= Time.deltaTime;
+        }
+        else
+        {
+            time = -1;
+        }
+    }
+
 
     private void TeleportBehindPlayer()
     {

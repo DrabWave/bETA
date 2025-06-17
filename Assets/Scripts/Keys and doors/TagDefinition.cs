@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using static UnityEngine.GraphicsBuffer;
 using Unity.VisualScripting;
 using System.Runtime.ConstrainedExecution;
+using static UnityEditor.PlayerSettings;
 
-public class TagDefinition : Sounds
+public class TagDefinition : MonoBehaviour
 {
     public PlayerStats pS;
     public HUD HUD;
+
     public Door[] Door;
     public Door1[] Door1;
     public Door2[] Door2;
@@ -17,6 +19,8 @@ public class TagDefinition : Sounds
     public Door5[] Door5;
 
 
+
+    public Sounds sos;
 
     public GameObject currentObject;
     public KeysAndDoors KD;
@@ -116,8 +120,9 @@ public class TagDefinition : Sounds
             case ("Door", true):
                 Door[0].OpenDoor(true);
                 Door[1].OpenDoor(true);
+                sos.PlaySound(sos.sounds[1]);
+
                 
-                PlaySound(sounds[1]);
                 break;
 
             case ("Door1", true):
@@ -126,7 +131,7 @@ public class TagDefinition : Sounds
                     Door1[0].OpenDoor(true);
                     Door1[1].OpenDoor(true);
 
-                    PlaySound(sounds[1]);
+                    sos.PlaySound(sos.sounds[1]);
                 }
                 break;
 
@@ -138,7 +143,7 @@ public class TagDefinition : Sounds
                     Door2[0].OpenDoor(true);
                     Door2[1].OpenDoor(true);
 
-                    PlaySound(sounds[1]);
+                    sos.PlaySound(sos.sounds[1]);
                 }
                 break;
 
@@ -150,7 +155,7 @@ public class TagDefinition : Sounds
                     Door3[0].OpenDoor(true);
                     Door3[1].OpenDoor(true);
 
-                    PlaySound(sounds[1]);
+                    sos.PlaySound(sos.sounds[1]);
                 }
                 break;
 
@@ -162,7 +167,7 @@ public class TagDefinition : Sounds
                     Door4[0].OpenDoor(true);
                     Door4[1].OpenDoor(true);
 
-                    PlaySound(sounds[1]);
+                    sos.PlaySound(sos.sounds[1]);
                 }
                 break;
 
@@ -174,7 +179,7 @@ public class TagDefinition : Sounds
                     Door5[0].OpenDoor(true);
                     Door5[1].OpenDoor(true);
 
-                    PlaySound(sounds[1]);
+                    sos.PlaySound(sos.sounds[1]);
                 }
                 break;
 

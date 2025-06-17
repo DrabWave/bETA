@@ -3,7 +3,6 @@ using UnityEngine;
 public class FlashLight : MonoBehaviour
 {
 
-    // бл€ть рандом заху€чить, чтобы мерцани€ были, а также батарейки
     public PlayerStats pS;
 
     public Light flashLight;
