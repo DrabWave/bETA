@@ -34,7 +34,7 @@ public class SilentStalker : MonoBehaviour
             }
             if (time == sos.sounds[4].length)
             {
-                sos.PlaySound(sos.sounds[4],100f);
+                sos.PlaySound(sos.sounds[4],70f);
             }
         }
 
