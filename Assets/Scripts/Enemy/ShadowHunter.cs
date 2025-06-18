@@ -5,7 +5,7 @@ public class ShadowHunter : MonoBehaviour
 {
     // Появляется из затемнённых зон. Если игрок попадает в поле зрения, охотник мгновенно приближается. После атаки исчезает и появляется в другой части станции.
 
-    public Transform[] RandomPointsShadowHunter = new Transform[3];
+    public Transform[] RandomPointsShadowHunter = new Transform[13];
     public Transform player;
     public float distanceForAttack = 10;
     public bool isAttack;
@@ -30,19 +30,30 @@ public class ShadowHunter : MonoBehaviour
 
     private void AttackAndTeleport()
     {
-        isAttack = true;
-        transform.position = player.position + (player.forward * 4f);
+
+        Vector3 attackPos = player.position + (player.forward * 4f);
+        attackPos.y = transform.position.y;
+        transform.position = attackPos;
         time += Time.deltaTime;
-        e.Damage(0.01f);
+        if (!isAttack)
+        {
+            StartCoroutine(Attack());
+        }
         
-        if (time >= 1.5f)
+        if (time >= 1f)
         {
             e.TeleportRand(transform, RandomPointsShadowHunter);
+            time = 0;
         }
-        isAttack = false;
     }
 
 
-
+    private IEnumerator Attack()
+    {
+        isAttack = true;
+        e.Damage(0.5f);
+        yield return new WaitForSeconds(2f);
+        isAttack = false;
+    }
 
 }

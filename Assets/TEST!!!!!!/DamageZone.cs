@@ -16,6 +16,6 @@ public class DamageZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("вкееем!!!");
+        Debug.Log("лъс!!");
     }
 }

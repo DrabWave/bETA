@@ -117,7 +117,7 @@ public class PsychicParasite : MonoBehaviour
                     camShake.shakeTime = 999999f;
                     camShake.TriggerShake();
                 }
-                e.Damage(1);
+                if (!attacking) StartCoroutine(Attack());
                 myAgent.enabled = false;
                 Debug.Log("ÃŒÕ—“– ¿“¿ ”≈“");
 
